@@ -42,13 +42,8 @@
       font-size: 14px;
     }
 
-    .whatsapp {
-      background: #25D366;
-    }
-
-    .map {
-      background: #1e88e5;
-    }
+    .whatsapp { background: #25D366; }
+    .map { background: #1e88e5; }
 
     .category-btn {
       padding: 8px 10px;
@@ -69,9 +64,7 @@
 
 <h1>Vizag Business Directory</h1>
 
-<button class="category-btn" onclick="document.getElementById('form').style.display='block'">
-  ➕ Add Business
-</button>
+<button class="category-btn" onclick="toggleForm()">➕ Add Business</button>
 
 <button class="category-btn" onclick="filterCategory('all')">All</button>
 <button class="category-btn" onclick="filterCategory('Food')">Food</button>
@@ -84,10 +77,10 @@
 
   <h3>Add Your Business</h3>
 
-  <input id="bname" placeholder="Business Name" style="width:100%;padding:8px;margin:5px 0;"><br>
-  <input id="bcategory" placeholder="Category" style="width:100%;padding:8px;margin:5px 0;"><br>
-  <input id="bphone" placeholder="WhatsApp Number (with country code)" style="width:100%;padding:8px;margin:5px 0;"><br>
-  <input id="bmap" placeholder="Google Maps Link" style="width:100%;padding:8px;margin:5px 0;"><br>
+  <input id="bname" placeholder="Business Name" style="width:100%;padding:8px;margin:5px 0;">
+  <input id="bcategory" placeholder="Category (Food, Healthcare)" style="width:100%;padding:8px;margin:5px 0;">
+  <input id="bphone" placeholder="WhatsApp Number (with country code)" style="width:100%;padding:8px;margin:5px 0;">
+  <input id="bmap" placeholder="Google Maps Link" style="width:100%;padding:8px;margin:5px 0;">
 
   <button onclick="addBusiness()" class="category-btn" style="background:green;color:white;">
     Submit
@@ -95,27 +88,33 @@
 
 </div>
 
-<!-- BUSINESSES -->
+<!-- BUSINESS LIST -->
 <div id="list">
 
-<div class="card business" data-category="Food">
-  <h3>ABC Restaurant</h3>
-  <p>Category: Food</p>
-  <a class="btn whatsapp" href="https://wa.me/919999999999">WhatsApp</a>
-  <a class="btn map" href="https://maps.google.com">View Map</a>
+  <div class="card business" data-category="Food">
+    <h3>ABC Restaurant</h3>
+    <p>Category: Food</p>
+    <a class="btn whatsapp" href="https://wa.me/919999999999">WhatsApp</a>
+    <a class="btn map" href="https://maps.google.com" target="_blank">View Map</a>
+  </div>
+
+  <div class="card business" data-category="Healthcare">
+    <h3>City Hospital</h3>
+    <p>Category: Healthcare</p>
+    <a class="btn whatsapp" href="https://wa.me/919999999999">WhatsApp</a>
+    <a class="btn map" href="https://maps.google.com" target="_blank">View Map</a>
+  </div>
+
 </div>
 
-<div class="card business" data-category="Healthcare">
-  <h3>City Hospital</h3>
-  <p>Category: Healthcare</p>
-  <a class="btn whatsapp" href="https://wa.me/919999999999">WhatsApp</a>
-  <a class="btn map" href="https://maps.google.com">View Map</a>
-</div>
-
-</div>
-
-<!-- SCRIPT -->
+<!-- SCRIPT (ALL JS MUST BE HERE ONLY) -->
 <script>
+
+function toggleForm() {
+  let form = document.getElementById("form");
+  form.style.display = form.style.display === "block" ? "none" : "block";
+}
+
 function searchFunction() {
   let input = document.getElementById('search').value.toLowerCase();
   let cards = document.getElementsByClassName('business');
@@ -146,6 +145,11 @@ function addBusiness() {
   let phone = document.getElementById("bphone").value;
   let map = document.getElementById("bmap").value;
 
+  if (!name || !category || !phone || !map) {
+    alert("Please fill all fields");
+    return;
+  }
+
   let card = document.createElement("div");
   card.className = "card business";
   card.setAttribute("data-category", category);
@@ -153,14 +157,16 @@ function addBusiness() {
   card.innerHTML = `
     <h3>${name}</h3>
     <p>Category: ${category}</p>
-    <a class="btn whatsapp" href="https://wa.me/${phone}">WhatsApp</a>
+    <a class="btn whatsapp" href="https://wa.me/${phone}" target="_blank">WhatsApp</a>
     <a class="btn map" href="${map}" target="_blank">View Map</a>
   `;
 
   document.getElementById("list").appendChild(card);
 
+  document.getElementById("form").reset;
   document.getElementById("form").style.display = "none";
 }
+
 </script>
 
 </body>
