@@ -3,7 +3,7 @@
 <head>
   <title>Vizag Business Directory</title>
 
-  <!-- ✅ FIREBASE SCRIPTS (ADDED HERE) -->
+  <!-- FIREBASE SCRIPTS -->
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
@@ -95,10 +95,7 @@
 <!-- BUSINESS LIST -->
 <div id="list"></div>
 
-<!-- SCRIPT -->
 <script>
-
-/// 🔥 FIREBASE CONFIG (ADDED)
 const firebaseConfig = {
   apiKey: "AIzaSyBEwT_Inq8SpSg6rGknWhXHDX6ub3XJqRo",
   authDomain: "vizag-directory-776bb.firebaseapp.com",
@@ -111,7 +108,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-/// 🔁 LOAD DATA FROM FIREBASE
+/// LOAD DATA
 db.collection("businesses").onSnapshot((snapshot) => {
   document.getElementById("list").innerHTML = "";
 
@@ -133,7 +130,7 @@ db.collection("businesses").onSnapshot((snapshot) => {
   });
 });
 
-/// ➕ ADD BUSINESS TO FIREBASE
+/// ADD BUSINESS
 function addBusiness() {
   let name = document.getElementById("bname").value;
   let category = document.getElementById("bcategory").value;
@@ -149,10 +146,16 @@ function addBusiness() {
     name: name,
     category: category,
     phone: phone,
-    map: map
+    map: map,
+    status: "pending"
   });
 
-  alert("Business saved!");
+  alert("Business saved! Waiting for approval.");
+
+  document.getElementById("bname").value = "";
+  document.getElementById("bcategory").value = "";
+  document.getElementById("bphone").value = "";
+  document.getElementById("bmap").value = "";
 
   document.getElementById("form").style.display = "none";
 }
@@ -164,8 +167,8 @@ function toggleForm() {
 }
 
 function searchFunction() {
-  let input = document.getElementById('search').value.toLowerCase();
-  let cards = document.getElementsByClassName('business');
+  let input = document.getElementById("search").value.toLowerCase();
+  let cards = document.getElementsByClassName("business");
 
   for (let i = 0; i < cards.length; i++) {
     let text = cards[i].innerText.toLowerCase();
@@ -174,7 +177,7 @@ function searchFunction() {
 }
 
 function filterCategory(category) {
-  let cards = document.getElementsByClassName('business');
+  let cards = document.getElementsByClassName("business");
 
   for (let i = 0; i < cards.length; i++) {
     let cardCategory = cards[i].getAttribute("data-category");
@@ -186,7 +189,6 @@ function filterCategory(category) {
     }
   }
 }
-
 </script>
 
 </body>
