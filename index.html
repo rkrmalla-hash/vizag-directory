@@ -46,7 +46,31 @@
 <body>
 
 <h1>Vizag Business Directory</h1>
+<script>
+function searchFunction() {
+  let input = document.getElementById('search').value.toLowerCase();
+  let cards = document.getElementsByClassName('business');
 
+  for (let i = 0; i < cards.length; i++) {
+    let text = cards[i].innerText.toLowerCase();
+    cards[i].style.display = text.includes(input) ? "" : "none";
+  }
+}
+
+function filterCategory(category) {
+  let cards = document.getElementsByClassName('business');
+
+  for (let i = 0; i < cards.length; i++) {
+    let cardCategory = cards[i].getAttribute("data-category");
+
+    if (category === "all" || cardCategory === category) {
+      cards[i].style.display = "";
+    } else {
+      cards[i].style.display = "none";
+    }
+  }
+}
+</script>
 <input class="search-box" type="text" id="search" onkeyup="searchFunction()" placeholder="Search businesses...">
 
 <div class="card business">
