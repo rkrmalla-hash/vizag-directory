@@ -3,8 +3,23 @@
 <head>
   <title>Vizag Business Directory</title>
   <style>
-    body { font-family: Arial; margin: 20px; background: #f5f5f5; }
-    h1 { color: darkblue; }
+    body {
+      font-family: Arial;
+      margin: 20px;
+      background: #f5f5f5;
+    }
+
+    h1 {
+      color: darkblue;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
     .card {
       background: white;
       padding: 15px;
@@ -12,24 +27,53 @@
       border-radius: 8px;
       box-shadow: 0 0 5px #ccc;
     }
+
+    .btn {
+      display: inline-block;
+      padding: 6px 10px;
+      margin-top: 5px;
+      background: green;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .map {
+      background: blue;
+    }
   </style>
 </head>
 <body>
 
 <h1>Vizag Business Directory</h1>
-<p>Find trusted businesses in Visakhapatnam</p>
 
-<div class="card">
-  <h3>Sample Restaurant</h3>
+<input class="search-box" type="text" id="search" onkeyup="searchFunction()" placeholder="Search businesses...">
+
+<div class="card business">
+  <h3>ABC Restaurant</h3>
   <p>Category: Food</p>
-  <p>Location: Vizag</p>
+  <a class="btn" href="https://wa.me/919999999999">WhatsApp</a>
+  <a class="btn map" href="https://maps.google.com">View Map</a>
 </div>
 
-<div class="card">
-  <h3>Sample Hospital</h3>
+<div class="card business">
+  <h3>City Hospital</h3>
   <p>Category: Healthcare</p>
-  <p>Location: Vizag</p>
+  <a class="btn" href="https://wa.me/919999999999">WhatsApp</a>
+  <a class="btn map" href="https://maps.google.com">View Map</a>
 </div>
+
+<script>
+function searchFunction() {
+  let input = document.getElementById('search').value.toLowerCase();
+  let cards = document.getElementsByClassName('business');
+
+  for (let i = 0; i < cards.length; i++) {
+    let text = cards[i].innerText.toLowerCase();
+    cards[i].style.display = text.includes(input) ? "" : "none";
+  }
+}
+</script>
 
 </body>
 </html>
