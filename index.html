@@ -108,26 +108,29 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-/// LOAD DATA
-db.collection("businesses").onSnapshot((snapshot) => {
-  document.getElementById("list").innerHTML = "";
+/// LOAD ONLY APPROVED DATA
+db.collection("businesses")
+  .where("status", "==", "approved")
+  .onSnapshot((snapshot) => {
 
-  snapshot.forEach((doc) => {
-    let data = doc.data();
+    document.getElementById("list").innerHTML = "";
 
-    let card = document.createElement("div");
-    card.className = "card business";
-    card.setAttribute("data-category", data.category);
+    snapshot.forEach((doc) => {
+      let data = doc.data();
 
-    card.innerHTML = `
-      <h3>${data.name}</h3>
-      <p>Category: ${data.category}</p>
-      <a class="btn whatsapp" href="https://wa.me/${data.phone}" target="_blank">WhatsApp</a>
-      <a class="btn map" href="${data.map}" target="_blank">View Map</a>
-    `;
+      let card = document.createElement("div");
+      card.className = "card business";
+      card.setAttribute("data-category", data.category);
 
-    document.getElementById("list").appendChild(card);
-  });
+      card.innerHTML = `
+        <h3>${data.name}</h3>
+        <p>Category: ${data.category}</p>
+        <a class="btn whatsapp" href="https://wa.me/${data.phone}" target="_blank">WhatsApp</a>
+        <a class="btn map" href="${data.map}" target="_blank">View Map</a>
+      `;
+
+      document.getElementById("list").appendChild(card);
+    });
 });
 
 /// ADD BUSINESS
