@@ -3,6 +3,10 @@
 <head>
   <title>Vizag Business Directory</title>
 
+  <!-- ✅ FIREBASE SCRIPTS (ADDED HERE) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
   <style>
     body {
       font-family: Arial;
@@ -89,27 +93,71 @@
 </div>
 
 <!-- BUSINESS LIST -->
-<div id="list">
+<div id="list"></div>
 
-  <div class="card business" data-category="Food">
-    <h3>ABC Restaurant</h3>
-    <p>Category: Food</p>
-    <a class="btn whatsapp" href="https://wa.me/919999999999">WhatsApp</a>
-    <a class="btn map" href="https://maps.google.com" target="_blank">View Map</a>
-  </div>
-
-  <div class="card business" data-category="Healthcare">
-    <h3>City Hospital</h3>
-    <p>Category: Healthcare</p>
-    <a class="btn whatsapp" href="https://wa.me/919999999999">WhatsApp</a>
-    <a class="btn map" href="https://maps.google.com" target="_blank">View Map</a>
-  </div>
-
-</div>
-
-<!-- SCRIPT (ALL JS MUST BE HERE ONLY) -->
+<!-- SCRIPT -->
 <script>
 
+/// 🔥 FIREBASE CONFIG (ADDED)
+const firebaseConfig = {
+  apiKey: "AIzaSyBEwT_Inq8SpSg6rGknWhXHDX6ub3XJqRo",
+  authDomain: "vizag-directory-776bb.firebaseapp.com",
+  projectId: "vizag-directory-776bb",
+  storageBucket: "vizag-directory-776bb.appspot.com",
+  messagingSenderId: "60115144725",
+  appId: "1:60115144725:web:10d21d71913a73f9417e1c"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+/// 🔁 LOAD DATA FROM FIREBASE
+db.collection("businesses").onSnapshot((snapshot) => {
+  document.getElementById("list").innerHTML = "";
+
+  snapshot.forEach((doc) => {
+    let data = doc.data();
+
+    let card = document.createElement("div");
+    card.className = "card business";
+    card.setAttribute("data-category", data.category);
+
+    card.innerHTML = `
+      <h3>${data.name}</h3>
+      <p>Category: ${data.category}</p>
+      <a class="btn whatsapp" href="https://wa.me/${data.phone}" target="_blank">WhatsApp</a>
+      <a class="btn map" href="${data.map}" target="_blank">View Map</a>
+    `;
+
+    document.getElementById("list").appendChild(card);
+  });
+});
+
+/// ➕ ADD BUSINESS TO FIREBASE
+function addBusiness() {
+  let name = document.getElementById("bname").value;
+  let category = document.getElementById("bcategory").value;
+  let phone = document.getElementById("bphone").value;
+  let map = document.getElementById("bmap").value;
+
+  if (!name || !category || !phone || !map) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  db.collection("businesses").add({
+    name: name,
+    category: category,
+    phone: phone,
+    map: map
+  });
+
+  alert("Business saved!");
+
+  document.getElementById("form").style.display = "none";
+}
+
+/// UI FUNCTIONS
 function toggleForm() {
   let form = document.getElementById("form");
   form.style.display = form.style.display === "block" ? "none" : "block";
@@ -137,34 +185,6 @@ function filterCategory(category) {
       cards[i].style.display = "none";
     }
   }
-}
-
-function addBusiness() {
-  let name = document.getElementById("bname").value;
-  let category = document.getElementById("bcategory").value;
-  let phone = document.getElementById("bphone").value;
-  let map = document.getElementById("bmap").value;
-
-  if (!name || !category || !phone || !map) {
-    alert("Please fill all fields");
-    return;
-  }
-
-  let card = document.createElement("div");
-  card.className = "card business";
-  card.setAttribute("data-category", category);
-
-  card.innerHTML = `
-    <h3>${name}</h3>
-    <p>Category: ${category}</p>
-    <a class="btn whatsapp" href="https://wa.me/${phone}" target="_blank">WhatsApp</a>
-    <a class="btn map" href="${map}" target="_blank">View Map</a>
-  `;
-
-  document.getElementById("list").appendChild(card);
-
-  document.getElementById("form").reset;
-  document.getElementById("form").style.display = "none";
 }
 
 </script>
