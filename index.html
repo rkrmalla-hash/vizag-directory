@@ -78,7 +78,20 @@
 
 <!-- SEARCH -->
 <input class="search-box" type="text" id="search" onkeyup="searchFunction()" placeholder="Search businesses...">
+<div id="form" style="display:none; background:white; padding:15px; margin-top:10px; border-radius:10px;">
 
+  <h3>Add Your Business</h3>
+
+  <input id="bname" placeholder="Business Name" style="width:100%;padding:8px;margin:5px 0;"><br>
+  <input id="bcategory" placeholder="Category (Food, Healthcare...)" style="width:100%;padding:8px;margin:5px 0;"><br>
+  <input id="bphone" placeholder="WhatsApp Number (with country code)" style="width:100%;padding:8px;margin:5px 0;"><br>
+  <input id="bmap" placeholder="Google Maps Link" style="width:100%;padding:8px;margin:5px 0;"><br>
+
+  <button onclick="addBusiness()" class="category-btn" style="background:green;color:white;">
+    Submit
+  </button>
+
+</div>
 <!-- BUSINESSES -->
 
 <div class="card business" data-category="Food">
