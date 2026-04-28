@@ -161,14 +161,21 @@ db.collection("businesses")
       card.setAttribute("data-category", data.category);
 
       card.innerHTML = `
-        <img class="business-img" src="${data.image || 'https://via.placeholder.com/400x180?text=Business+Image'}">
-        <h3>${data.name}</h3>
-        <p><strong>Category:</strong> ${data.category}</p>
-        <p><strong>Address:</strong> ${data.address || ""}</p>
-        <p>${data.desc || ""}</p>
-        <a class="btn whatsapp" href="https://wa.me/${data.phone}" target="_blank">WhatsApp</a>
-        <a class="btn map" href="${data.map}" target="_blank">View Map</a>
-      `;
+  <img class="business-img" src="${data.image || 'https://via.placeholder.com/400x180?text=Business+Image'}">
+  <h3>${data.name}</h3>
+  <p><strong>Category:</strong> ${data.category}</p>
+  <p><strong>Address:</strong> ${data.address || ""}</p>
+  <p>${data.desc || ""}</p>
+
+  <a class="btn whatsapp" href="https://wa.me/${data.phone}" target="_blank">WhatsApp</a>
+  <a class="btn map" href="${data.map}" target="_blank">View Map</a>
+
+  <button class="btn" style="background:#ff9800;" onclick="addReview('${doc.id}')">
+    Add Review
+  </button>
+
+  <div id="reviews-${doc.id}" style="margin-top:10px;"></div>
+`;
 
       document.getElementById("list").appendChild(card);
     });
