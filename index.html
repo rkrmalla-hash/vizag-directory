@@ -9,68 +9,77 @@
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
   <style>
-  body {
-  font-family: 'Poppins', sans-serif;
-  margin: 20px;
-  background: linear-gradient(to bottom, #f9fafb, #eef2ff);
-}
+    body {
+      font-family: 'Poppins', sans-serif; /* ✅ changed */
+      margin: 20px;
+      background: linear-gradient(to bottom, #f9fafb, #eef2ff); /* ✅ changed */
+    }
 
-h1 {
-  color: #111827;
-  font-weight: 600;
-}
+    h1 {
+      color: #111827; /* ✅ changed */
+      font-weight: 600; /* ✅ added */
+    }
 
-.card {
-  background: white;
-  padding: 15px;
-  margin: 12px 0;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
+    .search-box {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
 
-.business-img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
+    .card {
+      background: white;
+      padding: 15px;
+      margin: 12px 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
 
-.btn {
-  display: inline-block;
-  padding: 8px 12px;
-  margin-top: 8px;
-  margin-right: 5px;
-  border-radius: 6px;
-  text-decoration: none;
-  color: white;
-  font-size: 14px;
-}
+    .business-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
 
-.whatsapp { background: #25D366; }
-.map { background: #1e88e5; }
+    .btn {
+      display: inline-block;
+      padding: 8px 12px;
+      margin-top: 8px;
+      margin-right: 5px;
+      border-radius: 6px;
+      text-decoration: none;
+      color: white;
+      font-size: 14px;
+    }
 
-.category-btn {
-  padding: 8px 10px;
-  margin: 5px 5px 10px 0;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  background: #e0e0e0;
-}
+    .whatsapp { background: #25D366; }
+    .map { background: #1e88e5; }
 
-.category-btn:hover {
-  background: #c5cae9;
-}
+    .category-btn {
+      padding: 8px 10px;
+      margin: 5px 5px 10px 0;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background: #e0e0e0;
+    }
 
-select, input, textarea {
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-</style></head>
+    .category-btn:hover {
+      background: #c5cae9;
+    }
 
-<body>
-  
+    select, input, textarea {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+
+<body>  
 <div class="header">
   <h1>Vizag Business Directory</h1>
   <p>Find trusted services near you</p>
