@@ -62,7 +62,7 @@
       background: #c5cae9;
     }
 
-    select, input {
+    select, input, textarea {
       border: 1px solid #ccc;
       border-radius: 6px;
     }
@@ -108,6 +108,10 @@
     <option>Pest Control</option>
   </select>
 
+  <input id="baddress" placeholder="Business Address" style="width:100%;padding:8px;margin:5px 0;">
+
+  <textarea id="bdesc" placeholder="Short Description" style="width:100%;padding:8px;margin:5px 0;height:80px;"></textarea>
+
   <input id="bphone" placeholder="WhatsApp Number (with country code)" style="width:100%;padding:8px;margin:5px 0;">
   <input id="bmap" placeholder="Google Maps Link" style="width:100%;padding:8px;margin:5px 0;">
 
@@ -149,7 +153,9 @@ db.collection("businesses")
 
       card.innerHTML = `
         <h3>${data.name}</h3>
-        <p>Category: ${data.category}</p>
+        <p><strong>Category:</strong> ${data.category}</p>
+        <p><strong>Address:</strong> ${data.address || ""}</p>
+        <p>${data.desc || ""}</p>
         <a class="btn whatsapp" href="https://wa.me/${data.phone}" target="_blank">WhatsApp</a>
         <a class="btn map" href="${data.map}" target="_blank">View Map</a>
       `;
@@ -162,10 +168,12 @@ db.collection("businesses")
 function addBusiness() {
   let name = document.getElementById("bname").value;
   let category = document.getElementById("bcategory").value;
+  let address = document.getElementById("baddress").value;
+  let desc = document.getElementById("bdesc").value;
   let phone = document.getElementById("bphone").value;
   let map = document.getElementById("bmap").value;
 
-  if (!name || !category || !phone || !map) {
+  if (!name || !category || !address || !desc || !phone || !map) {
     alert("Please fill all fields");
     return;
   }
@@ -173,6 +181,8 @@ function addBusiness() {
   db.collection("businesses").add({
     name: name,
     category: category,
+    address: address,
+    desc: desc,
     phone: phone,
     map: map,
     status: "pending"
@@ -182,6 +192,8 @@ function addBusiness() {
 
   document.getElementById("bname").value = "";
   document.getElementById("bcategory").value = "";
+  document.getElementById("baddress").value = "";
+  document.getElementById("bdesc").value = "";
   document.getElementById("bphone").value = "";
   document.getElementById("bmap").value = "";
 
