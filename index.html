@@ -247,6 +247,50 @@ function filterCategory(category) {
     }
   }
 }
+
+function addReview(id) {
+  let user = prompt("Your Name:");
+  if (!user) return;
+
+  let rating = prompt("Rating (1 to 5):");
+  if (!rating) return;
+
+  let comment = prompt("Your Review:");
+  if (!comment) return;
+
+  db.collection("businesses")
+    .doc(id)
+    .collection("reviews")
+    .add({
+      user: user,
+      rating: rating,
+      comment: comment
+    });
+
+  alert("Review Added!");
+}
+
+function loadReviews(id) {
+  db.collection("businesses")
+    .doc(id)
+    .collection("reviews")
+    .onSnapshot((snapshot) => {
+
+      let box = document.getElementById("reviews-" + id);
+      if (!box) return;
+
+      box.innerHTML = "<h4>Reviews</h4>";
+
+      snapshot.forEach((doc) => {
+        let r = doc.data();
+
+        box.innerHTML += `
+          <p>⭐ ${r.rating} - <strong>${r.user}</strong><br>${r.comment}</p>
+        `;
+      });
+
+    });
+}
 </script>
 
 </body>
