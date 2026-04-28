@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel - Vizag Directory</title>
+
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+  <style>
+    body{
+      font-family:Arial;
+      margin:20px;
+      background:#f4f6f8;
+    }
+
+    h1{
+      color:#1a237e;
+    }
+
+    .card{
+      background:white;
+      padding:15px;
+      margin:12px 0;
+      border-radius:10px;
+      box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .btn{
+      border:none;
+      padding:8px 12px;
+      margin-right:5px;
+      border-radius:6px;
+      color:white;
+      cursor:pointer;
+    }
+
+    .approve{background:green;}
+    .delete{background:red;}
+  </style>
+</head>
+
+<body>
+
+<h1>Admin Panel - Pending Businesses</h1>
+
+<div id="list"></div>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyBEwT_Inq8SpSg6rGknWhXHDX6ub3XJqRo",
+  authDomain: "vizag-directory-776bb.firebaseapp.com",
+  projectId: "vizag-directory-776bb",
+  storageBucket: "vizag-directory-776bb.appspot.com",
+  messagingSenderId: "60115144725",
+  appId: "1:60115144725:web:10d21d71913a73f9417e1c"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+db.collection("businesses")
+.where("status","==","pending")
+.onSnapshot((snapshot)=>{
+  document.getElementById("list").innerHTML = "";
+
+  snapshot.forEach((doc)=>{
+    let data = doc.data();
+
+    let card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <h3>${data.name}</h3>
+      <p>Category: ${data.category}</p>
+      <p>Phone: ${data.phone}</p>
+      <p><a href="${data.map}" target="_blank">View Map</a></p>
+
+      <button class="btn approve" onclick="approveBusiness('${doc.id}')">Approve</button>
+      <button class="btn delete" onclick="deleteBusiness('${doc.id}')">Delete</button>
+    `;
+
+    document.getElementById("list").appendChild(card);
+  });
+});
+
+function approveBusiness(id){
+  db.collection("businesses").doc(id).update({
+    status:"approved"
+  });
+  alert("Approved Successfully");
+}
+
+function deleteBusiness(id){
+  if(confirm("Delete this business?")){
+    db.collection("businesses").doc(id).delete();
+    alert("Deleted Successfully");
+  }
+}
+</script>
+
+</body>
+</html>
