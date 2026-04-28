@@ -61,6 +61,11 @@
     .category-btn:hover {
       background: #c5cae9;
     }
+
+    select, input {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
   </style>
 </head>
 
@@ -71,8 +76,10 @@
 <button class="category-btn" onclick="toggleForm()">➕ Add Business</button>
 
 <button class="category-btn" onclick="filterCategory('all')">All</button>
-<button class="category-btn" onclick="filterCategory('Food')">Food</button>
-<button class="category-btn" onclick="filterCategory('Healthcare')">Healthcare</button>
+<button class="category-btn" onclick="filterCategory('Hospitals')">Hospitals</button>
+<button class="category-btn" onclick="filterCategory('Schools')">Schools</button>
+<button class="category-btn" onclick="filterCategory('Restaurants')">Restaurants</button>
+<button class="category-btn" onclick="filterCategory('Hotels')">Hotels</button>
 
 <input class="search-box" type="text" id="search" onkeyup="searchFunction()" placeholder="Search businesses...">
 
@@ -82,7 +89,25 @@
   <h3>Add Your Business</h3>
 
   <input id="bname" placeholder="Business Name" style="width:100%;padding:8px;margin:5px 0;">
-  <input id="bcategory" placeholder="Category (Food, Healthcare)" style="width:100%;padding:8px;margin:5px 0;">
+
+  <select id="bcategory" style="width:100%;padding:8px;margin:5px 0;">
+    <option value="">Select Category</option>
+    <option>Hospitals</option>
+    <option>Schools</option>
+    <option>Real Estate</option>
+    <option>Home Services</option>
+    <option>Electricians</option>
+    <option>Plumbers</option>
+    <option>Car Repair</option>
+    <option>Packers & Movers</option>
+    <option>Beauty Parlours</option>
+    <option>Hotels</option>
+    <option>Restaurants</option>
+    <option>Contractors</option>
+    <option>Old Age Care</option>
+    <option>Pest Control</option>
+  </select>
+
   <input id="bphone" placeholder="WhatsApp Number (with country code)" style="width:100%;padding:8px;margin:5px 0;">
   <input id="bmap" placeholder="Google Maps Link" style="width:100%;padding:8px;margin:5px 0;">
 
