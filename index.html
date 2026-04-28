@@ -35,6 +35,14 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
+    .business-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
     .btn {
       display: inline-block;
       padding: 8px 12px;
@@ -112,6 +120,8 @@
 
   <textarea id="bdesc" placeholder="Short Description" style="width:100%;padding:8px;margin:5px 0;height:80px;"></textarea>
 
+  <input id="bimage" placeholder="Business Image URL" style="width:100%;padding:8px;margin:5px 0;">
+
   <input id="bphone" placeholder="WhatsApp Number (with country code)" style="width:100%;padding:8px;margin:5px 0;">
   <input id="bmap" placeholder="Google Maps Link" style="width:100%;padding:8px;margin:5px 0;">
 
@@ -137,7 +147,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-/// LOAD ONLY APPROVED DATA
 db.collection("businesses")
   .where("status", "==", "approved")
   .onSnapshot((snapshot) => {
@@ -152,6 +161,7 @@ db.collection("businesses")
       card.setAttribute("data-category", data.category);
 
       card.innerHTML = `
+        <img class="business-img" src="${data.image || 'https://via.placeholder.com/400x180?text=Business+Image'}">
         <h3>${data.name}</h3>
         <p><strong>Category:</strong> ${data.category}</p>
         <p><strong>Address:</strong> ${data.address || ""}</p>
@@ -164,12 +174,12 @@ db.collection("businesses")
     });
 });
 
-/// ADD BUSINESS
 function addBusiness() {
   let name = document.getElementById("bname").value;
   let category = document.getElementById("bcategory").value;
   let address = document.getElementById("baddress").value;
   let desc = document.getElementById("bdesc").value;
+  let image = document.getElementById("bimage").value;
   let phone = document.getElementById("bphone").value;
   let map = document.getElementById("bmap").value;
 
@@ -183,6 +193,7 @@ function addBusiness() {
     category: category,
     address: address,
     desc: desc,
+    image: image,
     phone: phone,
     map: map,
     status: "pending"
@@ -194,13 +205,13 @@ function addBusiness() {
   document.getElementById("bcategory").value = "";
   document.getElementById("baddress").value = "";
   document.getElementById("bdesc").value = "";
+  document.getElementById("bimage").value = "";
   document.getElementById("bphone").value = "";
   document.getElementById("bmap").value = "";
 
   document.getElementById("form").style.display = "none";
 }
 
-/// UI FUNCTIONS
 function toggleForm() {
   let form = document.getElementById("form");
   form.style.display = form.style.display === "block" ? "none" : "block";
