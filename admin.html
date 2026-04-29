@@ -37,14 +37,21 @@
 
     .approve{background:green;}
     .delete{background:red;}
+
+    .logout{
+      background:#000;
+      float:right;
+    }
   </style>
 </head>
 
 <body>
 
+<button class="btn logout" onclick="logout()">Logout</button>
+
 <h1>Admin Panel - Pending Businesses</h1>
 
-<div id="list"></div>
+<div id="list">Loading...</div>
 
 <script>
 const firebaseConfig = {
@@ -58,23 +65,29 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-
 const auth = firebase.auth();
 
+// 🔐 AUTH CHECK
 auth.onAuthStateChanged((user) => {
 
-  // ❌ Not logged in → go to login page
   if (!user || user.email !== "YOUR_EMAIL@gmail.com") {
     window.location.href = "login.html";
     return;
   }
 
-  // ✅ Logged in → load pending businesses
+  // ✅ LOAD DATA ONLY AFTER LOGIN
   db.collection("businesses")
   .where("status","==","pending")
   .onSnapshot((snapshot)=>{
 
-    document.getElementById("list").innerHTML = "";
+    let list = document.getElementById("list");
+
+    if(snapshot.empty){
+      list.innerHTML = "No pending businesses";
+      return;
+    }
+
+    list.innerHTML = "";
 
     snapshot.forEach((doc)=>{
       let data = doc.data();
@@ -92,34 +105,14 @@ auth.onAuthStateChanged((user) => {
         <button class="btn delete" onclick="deleteBusiness('${doc.id}')">Delete</button>
       `;
 
-      document.getElementById("list").appendChild(card);
+      list.appendChild(card);
     });
 
   });
 
 });
-  document.getElementById("list").innerHTML = "";
 
-  snapshot.forEach((doc)=>{
-    let data = doc.data();
-
-    let card = document.createElement("div");
-    card.className = "card";
-
-    card.innerHTML = `
-      <h3>${data.name}</h3>
-      <p>Category: ${data.category}</p>
-      <p>Phone: ${data.phone}</p>
-      <p><a href="${data.map}" target="_blank">View Map</a></p>
-
-      <button class="btn approve" onclick="approveBusiness('${doc.id}')">Approve</button>
-      <button class="btn delete" onclick="deleteBusiness('${doc.id}')">Delete</button>
-    `;
-
-    document.getElementById("list").appendChild(card);
-  });
-});
-
+// ✅ APPROVE
 function approveBusiness(id){
   db.collection("businesses").doc(id).update({
     status:"approved"
@@ -127,11 +120,19 @@ function approveBusiness(id){
   alert("Approved Successfully");
 }
 
+// ✅ DELETE
 function deleteBusiness(id){
   if(confirm("Delete this business?")){
     db.collection("businesses").doc(id).delete();
     alert("Deleted Successfully");
   }
+}
+
+// 🔓 LOGOUT
+function logout(){
+  firebase.auth().signOut().then(()=>{
+    window.location.href = "login.html";
+  });
 }
 </script>
 
