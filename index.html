@@ -336,7 +336,7 @@ db.collection("businesses")
 `;
 
       document.getElementById("list").appendChild(card);
-loadReviews(doc.id);
+setTimeout(() => loadReviews(doc.id), 100);
     });
 });
 
