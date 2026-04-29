@@ -11,103 +11,111 @@
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
   <style>
-  body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 20px;
-    background: #f4f6fb;
-  }
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #f4f6fb;
+}
 
-  /* 🔥 FIXED HEADER BACKGROUND */
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 220px;
-    background: linear-gradient(135deg, #4F46E5, #06B6D4);
-    z-index: -1;
-  }
+/* Header Background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 220px;
+  background: linear-gradient(135deg, #4F46E5, #06B6D4);
+  z-index: -1;
+}
 
-  /* 🔥 HEADER TEXT FIX (IMPORTANT) */
-  h1 {
-    color: white;              /* changed for header visibility */
-    font-weight: 600;
-    margin-top: 10px;
-  }
+/* Logo */
+.site-logo{
+  width:120px;
+  display:block;
+  margin:0 auto 15px;
+}
 
-  /* optional subtitle style */
-  p {
-    color: rgba(255,255,255,0.85);
-  }
+/* Heading */
+h1 {
+  color: white;
+  font-weight: 600;
+  margin-top: 10px;
+  text-align:center;
+}
 
-  .search-box {
-    width: 100%;
-    padding: 12px;
-    margin: 15px 0;
-    font-size: 16px;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-  }
+/* Subtitle */
+p {
+  color: rgba(255,255,255,0.85);
+  text-align:center;
+}
 
-  .card {
-    background: white;
-    padding: 18px;
-    margin: 15px 0;
-    border-radius: 14px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    border: 1px solid #eef0f5;
-    transition: 0.2s;
-  }
+.search-box {
+  width: 100%;
+  padding: 12px;
+  margin: 15px 0;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
 
-  .card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
-  }
+.card {
+  background: white;
+  padding: 18px;
+  margin: 15px 0;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  border: 1px solid #eef0f5;
+  transition: 0.2s;
+}
 
-  .business-img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
 
-  .btn {
-    display: inline-block;
-    padding: 8px 12px;
-    margin-top: 8px;
-    margin-right: 5px;
-    border-radius: 6px;
-    text-decoration: none;
-    color: white;
-    font-size: 14px;
-  }
+.business-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
 
-  .whatsapp { background: #25D366; }
-  .map { background: #1e88e5; }
+.btn {
+  display: inline-block;
+  padding: 8px 12px;
+  margin-top: 8px;
+  margin-right: 5px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+}
 
-  .category-btn {
-    padding: 8px 10px;
-    margin: 5px 5px 10px 0;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    background: #e0e0e0;
-  }
+.whatsapp { background: #25D366; }
+.map { background: #1e88e5; }
 
-  .category-btn:hover {
-    background: #c5cae9;
-  }
+.category-btn {
+  padding: 8px 10px;
+  margin: 5px 5px 10px 0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #e0e0e0;
+}
 
-  select, input, textarea {
-    border: 1px solid #ccc;
-    border-radius: 6px;
-  }
-</style>
-</head>
+.category-btn:hover {
+  background: #c5cae9;
+}
+
+select, input, textarea {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+</style></head>
 
 <body>  
 <div class="header">
