@@ -14,38 +14,36 @@ body{
   font-family:'Poppins',sans-serif;
   margin:0;
   padding:0;
-  background:linear-gradient(to bottom,#f8fafc,#eef2ff);
+  background:#f5f7fb;
   color:#222;
   scroll-behavior:smooth;
 }
 
 /* HEADER */
 .header{
-  background:linear-gradient(135deg,#0f172a,#1e293b,#334155);
-  padding:14px 28px;
+  background:linear-gradient(135deg,#facc15,#eab308,#f59e0b);
+  padding:12px 24px;
   display:flex;
   align-items:center;
-  gap:24px;
-  box-shadow:0 8px 24px rgba(0,0,0,0.18);
+  gap:22px;
   position:sticky;
   top:0;
   z-index:999;
-  border-bottom:4px solid #facc15;
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
 }
 
-/* LOGO BIGGER */
+/* BIG LOGO */
 .site-logo{
   width:170px;
   height:170px;
   object-fit:contain;
-  background:#ffffff;
-  padding:8px;
-  border-radius:18px;
-  box-shadow:0 12px 28px rgba(0,0,0,0.22);
-  flex-shrink:0;
+  background:#fff;
+  padding:6px;
+  border-radius:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.18);
 }
 
-/* TEXT AREA */
+/* CENTER TEXT */
 .header-text{
   flex:1;
   text-align:center;
@@ -55,46 +53,31 @@ body{
   margin:0;
   font-size:42px;
   font-weight:800;
-  color:#facc15;
-  letter-spacing:1px;
-  line-height:1.1;
+  color:#111;
   text-transform:uppercase;
 }
 
 .header-text p{
   margin:8px 0 0;
-  font-size:22px;
-  color:#ffffff;
+  font-size:20px;
+  color:#222;
   font-weight:700;
-  letter-spacing:1px;
 }
 
-.header-text .subline{
-  margin-top:8px;
-  font-size:18px;
-  color:#cbd5e1;
+.subline{
+  font-size:16px;
+  margin-top:6px;
+  color:#444;
   font-weight:600;
-}
-
-/* BUTTON AREA */
-.controls{
-  padding:14px 18px 6px;
 }
 
 .search-box{
   width:calc(100% - 40px);
-  margin:12px 20px 18px;
-  padding:15px 16px;
-  font-size:16px;
+  margin:18px 20px;
+  padding:14px;
   border:none;
-  border-radius:14px;
-  background:#ffffff;
-  box-shadow:0 8px 18px rgba(0,0,0,0.08);
-  outline:none;
-}
-
-.search-box:focus{
-  box-shadow:0 0 0 3px rgba(37,99,235,0.15);
+  border-radius:12px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.08);
 }
 
 .category-btn{
@@ -103,31 +86,21 @@ body{
   border:none;
   border-radius:10px;
   cursor:pointer;
-  background:linear-gradient(135deg,#2563eb,#1d4ed8);
+  background:#2563eb;
   color:#fff;
   font-weight:600;
-  box-shadow:0 6px 12px rgba(37,99,235,0.18);
-  transition:0.2s;
 }
 
 .category-btn:hover{
-  transform:translateY(-2px);
+  background:#1d4ed8;
 }
 
-/* CARDS */
 .card{
   background:#fff;
   padding:18px;
   margin:20px;
-  border-radius:18px;
+  border-radius:16px;
   box-shadow:0 10px 24px rgba(0,0,0,0.08);
-  border:1px solid #eef0f5;
-  transition:0.2s;
-}
-
-.card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 16px 30px rgba(0,0,0,0.12);
 }
 
 .business-img{
@@ -136,23 +109,8 @@ body{
   object-fit:cover;
   border-radius:12px;
   margin-bottom:12px;
-  background:#f1f5f9;
 }
 
-.card h3{
-  margin:8px 0;
-  font-size:24px;
-  color:#0f172a;
-}
-
-.card p{
-  color:#475569;
-  font-size:15px;
-  margin:6px 0;
-  text-align:left;
-}
-
-/* ACTION BUTTONS */
 .btn{
   display:inline-block;
   padding:10px 14px;
@@ -162,44 +120,11 @@ body{
   text-decoration:none;
   color:#fff;
   font-size:14px;
-  font-weight:600;
 }
 
 .whatsapp{background:#25D366;}
 .map{background:#1e88e5;}
-
-select,input,textarea{
-  border:1px solid #cbd5e1;
-  border-radius:8px;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-  .header{
-    flex-direction:column;
-    text-align:center;
-    padding:18px;
-  }
-
-  .site-logo{
-    width:130px;
-    height:130px;
-  }
-
-  .header-text h1{
-    font-size:28px;
-  }
-
-  .header-text p{
-    font-size:16px;
-  }
-
-  .header-text .subline{
-    font-size:14px;
-  }
-}
-</style>
-</head>
+</style></head>
 <body>
 <div class="header">
   <img src="logo.png" class="site-logo" alt="SISYP Logo">
