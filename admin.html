@@ -70,7 +70,7 @@ const auth = firebase.auth();
 // 🔐 AUTH CHECK
 auth.onAuthStateChanged((user) => {
 
-  if (!user || user.email !== "YOUR_EMAIL@gmail.com") {
+  if (!user || user.email !== "rkrmalla@gmail.com") {
     window.location.href = "login.html";
     return;
   }
