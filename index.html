@@ -72,6 +72,29 @@ body{
   font-weight:600;
 }
 
+/* TOP MENU */
+.top-actions{
+  padding:15px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  width:100%;
+  box-sizing:border-box;
+}
+
+.left-menu{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  flex:1;
+}
+
+.right-cta{
+  margin-left:auto;
+  flex-shrink:0;
+}
+
 .search-box{
   width:calc(100% - 40px);
   margin:18px 20px;
@@ -94,6 +117,29 @@ body{
 
 .category-btn:hover{
   background:#1d4ed8;
+}
+
+.free-btn{
+  background:linear-gradient(135deg,#ff6a00,#ff9800,#ffc107);
+  color:#fff;
+  border:none;
+  padding:14px 22px;
+  border-radius:50px;
+  font-size:16px;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 12px 25px rgba(255,152,0,0.35);
+  animation:bounceGlow 1.8s infinite;
+  white-space:nowrap;
+}
+
+.free-btn:hover{
+  transform:translateY(-3px) scale(1.04);
+}
+
+@keyframes bounceGlow{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-4px);}
 }
 
 .card{
@@ -125,6 +171,39 @@ body{
 
 .whatsapp{background:#25D366;}
 .map{background:#1e88e5;}
+
+@media(max-width:900px){
+  .top-actions{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .right-cta{
+    margin-left:0;
+  }
+
+  .free-btn{
+    width:100%;
+  }
+
+  .header{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .site-logo{
+    width:130px;
+    height:130px;
+  }
+
+  .header-text h1{
+    font-size:28px;
+  }
+
+  .header-text p{
+    font-size:18px;
+  }
+}
 </style>
 </head>
 <body>
