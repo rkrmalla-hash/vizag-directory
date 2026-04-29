@@ -21,55 +21,70 @@ body{
 
 /* HEADER */
 .header{
-  background:linear-gradient(135deg,#0f172a,#1e293b,#334155);
-  padding:12px 24px;
+  background:linear-gradient(135deg,#0f172a,#1e293b,#334155,#1e40af,#0f172a);
+  background-size:300% 300%;
+  animation:headerMove 8s ease infinite;
+  padding:14px 24px;
   display:flex;
   align-items:center;
   gap:22px;
   position:sticky;
   top:0;
   z-index:999;
-  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+  box-shadow:0 8px 20px rgba(0,0,0,0.18);
+  border-bottom:3px solid rgba(255,255,255,0.08);
+}
+
+@keyframes headerMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
 }
 
 /* BIG LOGO */
 .site-logo{
-  width:170px;
-  height:170px;
+  width:175px;
+  height:175px;
   object-fit:contain;
   background:#fff;
   padding:6px;
-  border-radius:16px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.18);
+  border-radius:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.22);
 }
 
 /* CENTER TEXT */
 .header-text{
   flex:1;
   text-align:center;
+  overflow:hidden;
 }
 
+/* MAIN TITLE SHINE EFFECT */
 .header-text h1{
   margin:0;
   font-size:42px;
-  font-weight:800;
-  color:#facc15;
+  font-weight:900;
   text-transform:uppercase;
+  letter-spacing:1px;
+  background:linear-gradient(90deg,#facc15,#ffffff,#facc15);
+  background-size:250% auto;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:textShine 4s linear infinite;
 }
 
+@keyframes textShine{
+  to{background-position:250% center;}
+}
+
+/* SUBTITLE */
 .header-text p{
   margin:10px 0 0;
   font-size:24px;
   color:#ffffff;
   font-weight:700;
   letter-spacing:0.5px;
-}
-
-.subline{
-  font-size:16px;
-  margin-top:6px;
-  color:#ffffff;
-  font-weight:600;
+  text-shadow:0 2px 6px rgba(0,0,0,0.25);
 }
 
 /* TOP MENU */
