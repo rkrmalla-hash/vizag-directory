@@ -137,13 +137,21 @@ body{
     <p>Business Directory in Andhra Pradesh Since 28 Years</p>
   </div>
 </div>
-<button class="category-btn" onclick="toggleForm()">➕ Add Business</button>
+<div class="top-actions">
 
-<button class="category-btn" onclick="filterCategory('all')">All</button>
-<button class="category-btn" onclick="filterCategory('Hospitals')">Hospitals</button>
-<button class="category-btn" onclick="filterCategory('Schools')">Schools</button>
-<button class="category-btn" onclick="filterCategory('Restaurants')">Restaurants</button>
-<button class="category-btn" onclick="filterCategory('Hotels')">Hotels</button>
+  <button class="free-btn" onclick="toggleForm()">➕ Free Listing</button>
+
+  <button class="category-btn" onclick="filterCategory('all')">All</button>
+  <button class="category-btn" onclick="filterCategory('Hospitals')">Hospitals</button>
+  <button class="category-btn" onclick="filterCategory('Schools')">Schools</button>
+  <button class="category-btn" onclick="filterCategory('Restaurants')">Restaurants</button>
+  <button class="category-btn" onclick="filterCategory('Hotels')">Hotels</button>
+
+  <button class="category-btn">Top Rated</button>
+  <button class="category-btn">Latest</button>
+  <button class="category-btn">Contact</button>
+
+</div>
 
 <input class="search-box" type="text" id="search" onkeyup="searchFunction()" placeholder="Search businesses...">
 
@@ -171,7 +179,6 @@ body{
     <option>Old Age Care</option>
     <option>Pest Control</option>
   </select>
-
   <input id="baddress" placeholder="Business Address" style="width:100%;padding:8px;margin:5px 0;">
 
   <textarea id="bdesc" placeholder="Short Description" style="width:100%;padding:8px;margin:5px 0;height:80px;"></textarea>
