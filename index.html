@@ -11,119 +11,136 @@
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
   <style>
-body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  padding: 20px;
-  background: #f4f6fb;
+body{
+  font-family:'Poppins',sans-serif;
+  margin:0;
+  padding:0;
+  background:#f5f7fb;
+  color:#222;
 }
 
-/* Header Background */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 320px;
-  background: linear-gradient(135deg, #4F46E5, #06B6D4);
-  z-index: -1;
+/* New Header */
+.header{
+  background:linear-gradient(135deg,#ffd200,#ffb300);
+  padding:18px 25px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
 }
 
-/* Logo */
 .site-logo{
-  width:180px;
-  max-width:90%;
-  height:auto;
-  display:block;
-  margin:20px auto 10px;
-  background:white;
-  padding:10px;
-  border-radius:15px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+  width:90px;
+  height:90px;
+  object-fit:contain;
+  background:#fff;
+  padding:8px;
+  border-radius:16px;
+  box-shadow:0 8px 18px rgba(0,0,0,0.12);
 }
 
-/* Heading */
-h1 {
-  color: white;
-  font-weight: 600;
-  margin-top: 10px;
-  text-align:center;
+.header-text h1{
+  margin:0;
+  font-size:32px;
+  color:#0f172a;
 }
 
-/* Subtitle */
-p {
-  color: rgba(255,255,255,0.85);
-  text-align:center;
+.header-text p{
+  margin:5px 0 0;
+  color:#334155;
+  font-size:15px;
 }
 
-.search-box {
-  width: 100%;
-  padding: 12px;
-  margin: 15px 0;
-  font-size: 16px;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+/* Hide old white text issues */
+body::before{
+  display:none;
 }
 
-.card {
-  background: white;
-  padding: 18px;
-  margin: 15px 0;
-  border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  border: 1px solid #eef0f5;
-  transition: 0.2s;
+h1,p{
+  text-align:left;
 }
 
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+/* Search */
+.search-box{
+  width:calc(100% - 40px);
+  margin:18px 20px;
+  padding:14px;
+  font-size:16px;
+  border:none;
+  border-radius:12px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.08);
 }
 
-.business-img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 10px;
+/* Buttons */
+.category-btn{
+  padding:10px 14px;
+  margin:4px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  background:#2563eb;
+  color:#fff;
+  font-weight:500;
 }
 
-.btn {
-  display: inline-block;
-  padding: 8px 12px;
-  margin-top: 8px;
-  margin-right: 5px;
-  border-radius: 6px;
-  text-decoration: none;
-  color: white;
-  font-size: 14px;
+.category-btn:hover{
+  background:#1d4ed8;
 }
 
-.whatsapp { background: #25D366; }
-.map { background: #1e88e5; }
-
-.category-btn {
-  padding: 8px 10px;
-  margin: 5px 5px 10px 0;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  background: #e0e0e0;
+/* Cards */
+.card{
+  background:#fff;
+  padding:18px;
+  margin:20px;
+  border-radius:16px;
+  box-shadow:0 10px 24px rgba(0,0,0,0.08);
+  border:1px solid #eef0f5;
 }
 
-.category-btn:hover {
-  background: #c5cae9;
+.card:hover{
+  transform:translateY(-3px);
 }
 
-select, input, textarea {
-  border: 1px solid #ccc;
-  border-radius: 6px;
+.business-img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:12px;
+  margin-bottom:12px;
 }
-</style></head>
 
-<body>  
+.btn{
+  display:inline-block;
+  padding:10px 14px;
+  margin-top:8px;
+  margin-right:6px;
+  border-radius:8px;
+  text-decoration:none;
+  color:#fff;
+  font-size:14px;
+  font-weight:500;
+}
+
+.whatsapp{background:#25D366;}
+.map{background:#1e88e5;}
+
+select,input,textarea{
+  border:1px solid #ccc;
+  border-radius:8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <img src="logo.png" class="site-logo" alt="SISYP Logo">
+
+  <div class="header-text">
+    <h1>Vizag Business Directory</h1>
+    <p>Trusted Local Businesses in Visakhapatnam</p>
+  </div>
+</div>  
 <div class="header">
   <div class="header-content">
     <h1>Vizag Business Directory</h1>
