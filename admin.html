@@ -116,15 +116,17 @@ auth.onAuthStateChanged((user) => {
 function approveBusiness(id){
   db.collection("businesses").doc(id).update({
     status:"approved"
-  });
-  alert("Approved Successfully");
+  })
+  .then(() => alert("Approved Successfully"))
+  .catch(err => alert("Error: " + err.message));
 }
 
 // ✅ DELETE
 function deleteBusiness(id){
   if(confirm("Delete this business?")){
-    db.collection("businesses").doc(id).delete();
-    alert("Deleted Successfully");
+    db.collection("businesses").doc(id).delete()
+    .then(() => alert("Deleted Successfully"))
+    .catch(err => alert("Error: " + err.message));
   }
 }
 
