@@ -1,486 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
 
 <meta charset="UTF-8">
-
-<!-- MOBILE RESPONSIVE -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- SEO TITLE -->
-<title>Vizag Business Directory | Andhra Pradesh Services, Hospitals, Hotels - SISYP</title>
+<title>Vizag Business Directory | Andhra Pradesh Services - SISYP</title>
 
-<!-- SEO DESCRIPTION -->
-<meta name="description" content="Find trusted businesses in Visakhapatnam and Andhra Pradesh including hospitals, schools, restaurants, hotels and local services. Add your business for free on SISYP directory.">
+<meta name="description" content="Discover trusted businesses, hospitals, restaurants, hotels and services in Andhra Pradesh. Premium business listings by SISYP Directory.">
 
-<!-- KEYWORDS -->
-<meta name="keywords" content="Vizag directory, Visakhapatnam businesses, Andhra Pradesh directory, hospitals, schools, restaurants, hotels, local services Vizag">
+<meta name="keywords" content="Vizag directory, Andhra Pradesh businesses, hospitals, hotels, restaurants">
 
-<!-- AUTHOR -->
-<meta name="author" content="SISYP Directory">
-
-<!-- ROBOTS -->
 <meta name="robots" content="index, follow">
 
-<!-- ✅ GOOGLE VERIFICATION (IMPORTANT) -->
-<meta name="google-site-verification" content="zUG0R7pLPH9uIFzfd8iaX0JEix9kvSFQfZxKSe2Ny-M" />
-
-<!-- SOCIAL SHARING -->
-<meta property="og:title" content="Vizag Business Directory - SISYP">
-<meta property="og:description" content="Find trusted businesses in Visakhapatnam and Andhra Pradesh. Add your business for free.">
-<meta property="og:image" content="logo.png">
-<meta property="og:url" content="https://rkrmalla-hash.github.io/vizag-directory/">
+<meta property="og:title" content="SISYP Business Directory">
+<meta property="og:description" content="Find trusted businesses across Andhra Pradesh">
 <meta property="og:type" content="website">
 
-<!-- FAVICON -->
 <link rel="icon" href="logo.png">
 
-<!-- GOOGLE FONTS -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<!-- FIREBASE -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
 body{
-  font-family:'Poppins',sans-serif;
-  margin:0;
-  padding:0;
-  background:#f5f7fb;
-  color:#222;
-  scroll-behavior:smooth;
+font-family:'Inter',sans-serif;
+background:#0f172a;
+color:white;
+overflow-x:hidden;
 }
 
-/* HEADER */
-.header{
-  background:linear-gradient(135deg,#0f172a,#1e293b,#334155,#1e40af,#0f172a);
-  background-size:300% 300%;
-  animation:headerMove 8s ease infinite;
-  padding:18px 35px;
-  min-height:210px;
-  display:flex;
-  align-items:center;
-  gap:28px;
-  position:sticky;
-  top:0;
-  z-index:999;
-  box-shadow:0 8px 20px rgba(0,0,0,0.18);
-  border-bottom:3px solid rgba(255,255,255,0.08);
-}
-@keyframes headerMove{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
+/* Animated Background */
+
+body::before{
+content:'';
+position:fixed;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at top left,#2563eb55,transparent 30%),
+radial-gradient(circle at bottom right,#7c3aed55,transparent 30%);
+z-index:-1;
 }
 
-/* BIG LOGO */
-.site-logo{
-  width:175px;
-  height:175px;
-  object-fit:contain;
-  background:#fff;
-  padding:6px;
-  border-radius:18px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.22);
+/* Navbar */
+
+.navbar{
+position:sticky;
+top:0;
+z-index:999;
+backdrop-filter:blur(18px);
+background:rgba(15,23,42,0.75);
+border-bottom:1px solid rgba(255,255,255,0.1);
+padding:18px 6%;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
-/* CENTER TEXT */
-.header-text{
-  flex:1;
-  text-align:center;
-  overflow:hidden;
+.logo{
+display:flex;
+align-items:center;
+gap:12px;
+font-size:24px;
+font-weight:800;
 }
 
-/* MAIN TITLE */
-.header-text h1{
-  margin:0;
-  font-size:42px;
-  font-weight:900;
-  text-transform:uppercase;
-  letter-spacing:1px;
-  background:linear-gradient(90deg,#facc15,#ffffff,#facc15);
-  background-size:250% auto;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  animation:textShine 4s linear infinite;
+.logo img{
+width:52px;
+height:52px;
+border-radius:14px;
 }
 
-@keyframes textShine{
-  to{background-position:250% center;}
+.nav-links{
+display:flex;
+gap:20px;
 }
 
-/* SUBTITLE */
-.header-text p{
-  margin:12px 0 0;
-  font-size:28px;
-  color:#ffffff;
-  font-weight:700;
-  text-shadow:0 2px 6px rgba(0,0,0,0.25);
+.nav-links a{
+color:white;
+text-decoration:none;
+font-weight:500;
+transition:0.3s;
 }
 
-/* TOP MENU */
-.top-actions{
-  padding:15px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  width:100%;
-  box-sizing:border-box;
+.nav-links a:hover{
+color:#60a5fa;
 }
 
-.left-menu{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  flex:1;
+/* Hero */
+
+.hero{
+padding:100px 6%;
+text-align:center;
 }
 
-.right-cta{
-  margin-left:auto;
-  flex-shrink:0;
+.hero h1{
+font-size:60px;
+font-weight:800;
+line-height:1.1;
+margin-bottom:20px;
+background:linear-gradient(to right,#ffffff,#60a5fa);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
-.search-box{
-  width:calc(100% - 40px);
-  margin:18px 20px;
-  padding:14px;
-  border:none;
-  border-radius:12px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.08);
+.hero p{
+font-size:20px;
+color:#cbd5e1;
+max-width:700px;
+margin:auto;
+margin-bottom:40px;
 }
 
-.category-btn{
-  padding:10px 14px;
-  margin:4px;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-  background:#2563eb;
-  color:#fff;
-  font-weight:600;
+/* Search */
+
+.search-wrapper{
+max-width:900px;
+margin:auto;
+display:flex;
+gap:12px;
+background:rgba(255,255,255,0.08);
+padding:15px;
+border-radius:24px;
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.1);
 }
 
-.category-btn:hover{
-  background:#1d4ed8;
+.search-wrapper input{
+flex:1;
+padding:18px;
+border:none;
+outline:none;
+border-radius:16px;
+font-size:16px;
+background:#fff;
+color:#111827;
 }
 
-.free-btn{
-  background:linear-gradient(135deg,#ff6a00,#ff9800,#ffc107);
-  color:#fff;
-  border:none;
-  padding:14px 22px;
-  border-radius:50px;
-  font-size:16px;
-  font-weight:800;
-  cursor:pointer;
-  box-shadow:0 12px 25px rgba(255,152,0,0.35);
-  animation:bounceGlow 1.8s infinite;
-  white-space:nowrap;
+.search-btn{
+padding:18px 28px;
+border:none;
+border-radius:16px;
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+color:white;
+font-weight:700;
+cursor:pointer;
+transition:0.3s;
 }
 
-.free-btn:hover{
-  transform:translateY(-3px) scale(1.04);
+.search-btn:hover{
+transform:translateY(-2px);
 }
 
-@keyframes bounceGlow{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-4px);}
+/* Categories */
+
+.section{
+padding:70px 6%;
 }
+
+.section-title{
+font-size:36px;
+margin-bottom:35px;
+font-weight:800;
+}
+
+.category-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+gap:20px;
+}
+
+.category-card{
+background:rgba(255,255,255,0.08);
+padding:28px;
+border-radius:22px;
+text-align:center;
+backdrop-filter:blur(18px);
+transition:0.3s;
+cursor:pointer;
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.category-card:hover{
+transform:translateY(-8px);
+background:rgba(255,255,255,0.12);
+}
+
+.category-card i{
+font-size:34px;
+margin-bottom:15px;
+color:#60a5fa;
+}
+
+/* Add Button */
+
+.floating-btn{
+position:fixed;
+bottom:25px;
+right:25px;
+width:65px;
+height:65px;
+border:none;
+border-radius:50%;
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+color:white;
+font-size:24px;
+cursor:pointer;
+box-shadow:0 15px 40px rgba(37,99,235,0.4);
+z-index:999;
+}
+
+/* Business Grid */
+
+.business-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:28px;
+}
+
+/* Business Card */
 
 .card{
-  background:#fff;
-  padding:18px;
-  margin:20px;
-  border-radius:16px;
-  box-shadow:0 10px 24px rgba(0,0,0,0.08);
+background:rgba(255,255,255,0.08);
+border-radius:24px;
+overflow:hidden;
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.1);
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 25px 60px rgba(0,0,0,0.3);
 }
 
 .business-img{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  border-radius:12px;
-  margin-bottom:12px;
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.card-content{
+padding:22px;
+}
+
+.card h3{
+font-size:24px;
+margin-bottom:10px;
+}
+
+.badge{
+display:inline-block;
+padding:7px 14px;
+border-radius:50px;
+background:#2563eb;
+font-size:13px;
+margin-bottom:12px;
+}
+
+.rating{
+color:#facc15;
+margin:10px 0;
+}
+
+.card p{
+color:#d1d5db;
+margin-bottom:8px;
+}
+
+.btn-group{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-top:18px;
 }
 
 .btn{
-  display:inline-block;
-  padding:10px 14px;
-  margin-top:8px;
-  margin-right:6px;
-  border-radius:8px;
-  text-decoration:none;
-  color:#fff;
-  font-size:14px;
+flex:1;
+padding:12px;
+border:none;
+border-radius:14px;
+font-weight:600;
+cursor:pointer;
+text-decoration:none;
+text-align:center;
+transition:0.3s;
 }
 
-.whatsapp{background:#25D366;}
-.map{background:#1e88e5;}
-
-@media(max-width:900px){
-  .top-actions{
-    flex-direction:column;
-    align-items:stretch;
-  }
-
-  .right-cta{
-    margin-left:0;
-  }
-
-  .free-btn{
-    width:100%;
-  }
-
-  .header{
-    flex-direction:column;
-    text-align:center;
-  }
-
-  .site-logo{
-    width:130px;
-    height:130px;
-  }
-
-  .header-text h1{
-    font-size:28px;
-  }
-
-  .header-text p{
-    font-size:18px;
-  }
+.whatsapp{
+background:#25D366;
+color:white;
 }
+
+.call{
+background:#0ea5e9;
+color:white;
+}
+
+.map{
+background:#f97316;
+color:white;
+}
+
+.review{
+background:#7c3aed;
+color:white;
+}
+
+.btn:hover{
+transform:translateY(-3px);
+}
+
+/* Form */
+
+.form-box{
+display:none;
+margin:50px auto;
+max-width:700px;
+background:rgba(255,255,255,0.08);
+padding:35px;
+border-radius:30px;
+backdrop-filter:blur(20px);
+}
+
+.form-box input,
+.form-box textarea,
+.form-box select{
+width:100%;
+padding:16px;
+margin-bottom:16px;
+border:none;
+border-radius:14px;
+background:white;
+font-size:15px;
+}
+
+.form-box button{
+width:100%;
+padding:18px;
+border:none;
+border-radius:16px;
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+color:white;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+}
+
+/* Footer */
+
+footer{
+padding:50px 6%;
+text-align:center;
+color:#94a3b8;
+border-top:1px solid rgba(255,255,255,0.08);
+margin-top:60px;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:42px;
+}
+
+.search-wrapper{
+flex-direction:column;
+}
+
+.nav-links{
+display:none;
+}
+
+}
+
 </style>
 
 </head>
 
 <body>
-<div class="header">
-  <img src="logo.png" class="site-logo">
 
-  <div class="header-text">
-    <h1>SOUTHERN INFORMATION SERVICES YELLOW PAGES</h1>
-    <p>Business Directory in Andhra Pradesh Since 28 Years</p>
-  </div>
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<div class="logo">
+<img src="logo.png">
+<span>SISYP Directory</span>
 </div>
-<div class="top-actions">
 
-  <div class="left-menu">
-    <button class="category-btn" onclick="filterCategory('all')">All</button>
-    <button class="category-btn" onclick="filterCategory('Hospitals')">Hospitals</button>
-    <button class="category-btn" onclick="filterCategory('Schools')">Schools</button>
-    <button class="category-btn" onclick="filterCategory('Restaurants')">Restaurants</button>
-    <button class="category-btn" onclick="filterCategory('Hotels')">Hotels</button>
-  </div>
-
-  <div class="right-cta">
-    <button class="free-btn" onclick="toggleForm()">
-      ➕ Add Free Business Listing
-    </button>
-  </div>
-
+<div class="nav-links">
+<a href="#">Home</a>
+<a href="#categories">Categories</a>
+<a href="#businesses">Businesses</a>
 </div>
- 
-<input class="search-box" type="text" id="search" onkeyup="searchFunction()" placeholder="Search businesses...">
 
-<!-- FORM -->
-<div id="form" style="display:none; background:white; padding:15px; margin-top:10px; border-radius:10px;">
+</nav>
 
-  <h3>Add Your Business</h3>
+<!-- HERO -->
 
-  <input id="bname" placeholder="Business Name" style="width:100%;padding:8px;margin:5px 0;">
+<section class="hero">
 
-  <select id="bcategory" style="width:100%;padding:8px;margin:5px 0;">
-    <option value="">Select Category</option>
-    <option>Hospitals</option>
-    <option>Schools</option>
-    <option>Real Estate</option>
-    <option>Home Services</option>
-    <option>Electricians</option>
-    <option>Plumbers</option>
-    <option>Car Repair</option>
-    <option>Packers & Movers</option>
-    <option>Beauty Parlours</option>
-    <option>Hotels</option>
-    <option>Restaurants</option>
-    <option>Contractors</option>
-    <option>Old Age Care</option>
-    <option>Pest Control</option>
-  </select>
-  <input id="baddress" placeholder="Business Address" style="width:100%;padding:8px;margin:5px 0;">
+<h1>Find Trusted Local Businesses</h1>
 
-  <textarea id="bdesc" placeholder="Short Description" style="width:100%;padding:8px;margin:5px 0;height:80px;"></textarea>
+<p>
+Discover top-rated businesses, hospitals, restaurants, hotels and services across Andhra Pradesh.
+</p>
 
-  <input id="bimage" placeholder="Business Image URL" style="width:100%;padding:8px;margin:5px 0;">
+<div class="search-wrapper">
 
-  <input id="bphone" placeholder="WhatsApp Number (with country code)" style="width:100%;padding:8px;margin:5px 0;">
-  <input id="bmap" placeholder="Google Maps Link" style="width:100%;padding:8px;margin:5px 0;">
+<input type="text"
+id="search"
+placeholder="Search businesses, categories, services..."
+onkeyup="searchFunction()">
 
-  <button onclick="addBusiness()" class="category-btn" style="background:green;color:white;">
-    Submit
-  </button>
+<button class="search-btn">
+<i class="fa-solid fa-magnifying-glass"></i>
+Search
+</button>
 
 </div>
 
-<!-- BUSINESS LIST -->
-<div id="list"></div>
+</section>
+
+<!-- CATEGORIES -->
+
+<section class="section" id="categories">
+
+<h2 class="section-title">Popular Categories</h2>
+
+<div class="category-grid">
+
+<div class="category-card" onclick="filterCategory('Hospitals')">
+<i class="fa-solid fa-hospital"></i>
+<h3>Hospitals</h3>
+</div>
+
+<div class="category-card" onclick="filterCategory('Hotels')">
+<i class="fa-solid fa-hotel"></i>
+<h3>Hotels</h3>
+</div>
+
+<div class="category-card" onclick="filterCategory('Restaurants')">
+<i class="fa-solid fa-utensils"></i>
+<h3>Restaurants</h3>
+</div>
+
+<div class="category-card" onclick="filterCategory('Schools')">
+<i class="fa-solid fa-school"></i>
+<h3>Schools</h3>
+</div>
+
+<div class="category-card" onclick="filterCategory('Real Estate')">
+<i class="fa-solid fa-building"></i>
+<h3>Real Estate</h3>
+</div>
+
+<div class="category-card" onclick="filterCategory('all')">
+<i class="fa-solid fa-layer-group"></i>
+<h3>All</h3>
+</div>
+
+</div>
+
+</section>
+
+<!-- ADD FORM -->
+
+<div class="form-box" id="form">
+
+<h2 style="margin-bottom:25px;">Add Your Business</h2>
+
+<input id="bname" placeholder="Business Name">
+
+<select id="bcategory">
+<option value="">Select Category</option>
+<option>Hospitals</option>
+<option>Schools</option>
+<option>Restaurants</option>
+<option>Hotels</option>
+<option>Real Estate</option>
+<option>Electricians</option>
+<option>Plumbers</option>
+</select>
+
+<input id="baddress" placeholder="Business Address">
+
+<textarea id="bdesc" placeholder="Business Description"></textarea>
+
+<input id="bimage" placeholder="Business Image URL">
+
+<input id="bphone" placeholder="Phone Number">
+
+<input id="bmap" placeholder="Google Maps Link">
+
+<button onclick="addBusiness()">
+Submit Business
+</button>
+
+</div>
+
+<!-- BUSINESS SECTION -->
+
+<section class="section" id="businesses">
+
+<h2 class="section-title">Featured Businesses</h2>
+
+<div class="business-grid" id="list"></div>
+
+</section>
+
+<!-- Floating Button -->
+
+<button class="floating-btn" onclick="toggleForm()">
++
+</button>
+
+<!-- FOOTER -->
+
+<footer>
+
+<p>© 2026 SISYP Business Directory. All Rights Reserved.</p>
+
+</footer>
 
 <script>
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBEwT_Inq8SpSg6rGknWhXHDX6ub3XJqRo",
-  authDomain: "vizag-directory-776bb.firebaseapp.com",
-  projectId: "vizag-directory-776bb",
-  storageBucket: "vizag-directory-776bb.appspot.com",
-  messagingSenderId: "60115144725",
-  appId: "1:60115144725:web:10d21d71913a73f9417e1c"
+apiKey: "AIzaSyBEwT_Inq8SpSg6rGknWhXHDX6ub3XJqRo",
+authDomain: "vizag-directory-776bb.firebaseapp.com",
+projectId: "vizag-directory-776bb",
+storageBucket: "vizag-directory-776bb.appspot.com",
+messagingSenderId: "60115144725",
+appId: "1:60115144725:web:10d21d71913a73f9417e1c"
 };
 
 firebase.initializeApp(firebaseConfig);
+
 const db = firebase.firestore();
 
+/* LOAD BUSINESSES */
+
 db.collection("businesses")
-  .where("status", "==", "approved")
-  .onSnapshot((snapshot) => {
+.where("status","==","approved")
+.onSnapshot((snapshot)=>{
 
-    document.getElementById("list").innerHTML = "";
+document.getElementById("list").innerHTML="";
 
-    snapshot.forEach((doc) => {
-      let data = doc.data();
+snapshot.forEach((doc)=>{
 
-      let card = document.createElement("div");
-      card.className = "card business";
-      card.setAttribute("data-category", data.category);
+let data = doc.data();
 
-      card.innerHTML = `
-  <img class="business-img" src="${data.image || 'https://via.placeholder.com/400x180?text=Business+Image'}">
-  <h3>${data.name}</h3>
-  <p><strong>Category:</strong> ${data.category}</p>
-  <p><strong>Address:</strong> ${data.address || ""}</p>
-  <p>${data.desc || ""}</p>
+let card = document.createElement("div");
 
-  <a class="btn whatsapp" href="https://wa.me/${data.phone}" target="_blank">WhatsApp</a>
-  <a class="btn map" href="${data.map}" target="_blank">View Map</a>
+card.className = "card business";
 
-  <button class="btn" style="background:#ff9800;" onclick="addReview('${doc.id}')">
-    Add Review
-  </button>
+card.setAttribute("data-category",data.category);
 
-  <div id="reviews-${doc.id}" style="margin-top:10px;"></div>
+card.innerHTML = `
+
+<img class="business-img"
+src="${data.image || 'https://via.placeholder.com/400x250'}">
+
+<div class="card-content">
+
+<span class="badge">${data.category}</span>
+
+<h3>${data.name}</h3>
+
+<div class="rating">
+★★★★★
+</div>
+
+<p>${data.address || ''}</p>
+
+<p>${data.desc || ''}</p>
+
+<div class="btn-group">
+
+<a class="btn whatsapp"
+href="https://wa.me/${data.phone}"
+target="_blank">
+WhatsApp
+</a>
+
+<a class="btn call"
+href="tel:${data.phone}">
+Call
+</a>
+
+<a class="btn map"
+href="${data.map}"
+target="_blank">
+Map
+</a>
+
+<button class="btn review"
+onclick="addReview('${doc.id}')">
+Review
+</button>
+
+</div>
+
+<div id="reviews-${doc.id}" style="margin-top:15px;"></div>
+
+</div>
 `;
 
-      document.getElementById("list").appendChild(card);
+document.getElementById("list").appendChild(card);
+
 loadReviews(doc.id);
-    });
+
 });
 
-function addBusiness() {
-  let name = document.getElementById("bname").value;
-  let category = document.getElementById("bcategory").value;
-  let address = document.getElementById("baddress").value;
-  let desc = document.getElementById("bdesc").value;
-  let image = document.getElementById("bimage").value;
-  let phone = document.getElementById("bphone").value;
-  let map = document.getElementById("bmap").value;
+});
 
-  if (!name || !category || !address || !desc || !phone || !map) {
-    alert("Please fill all fields");
-    return;
-  }
+/* ADD BUSINESS */
 
-  db.collection("businesses").add({
-    name: name,
-    category: category,
-    address: address,
-    desc: desc,
-    image: image,
-    phone: phone,
-    map: map,
-    status: "pending"
-  });
+function addBusiness(){
 
-  alert("Business saved! Waiting for approval.");
+let name = document.getElementById("bname").value;
+let category = document.getElementById("bcategory").value;
+let address = document.getElementById("baddress").value;
+let desc = document.getElementById("bdesc").value;
+let image = document.getElementById("bimage").value;
+let phone = document.getElementById("bphone").value;
+let map = document.getElementById("bmap").value;
 
-  document.getElementById("bname").value = "";
-  document.getElementById("bcategory").value = "";
-  document.getElementById("baddress").value = "";
-  document.getElementById("bdesc").value = "";
-  document.getElementById("bimage").value = "";
-  document.getElementById("bphone").value = "";
-  document.getElementById("bmap").value = "";
-
-  document.getElementById("form").style.display = "none";
+if(!name || !category || !address || !desc || !phone || !map){
+alert("Please fill all fields");
+return;
 }
 
-function toggleForm() {
-  let form = document.getElementById("form");
-  form.style.display = form.style.display === "block" ? "none" : "block";
+db.collection("businesses").add({
+name,
+category,
+address,
+desc,
+image,
+phone,
+map,
+status:"pending"
+});
+
+alert("Business submitted for approval!");
+
+document.getElementById("form").reset?.();
+
+location.reload();
+
 }
 
-function searchFunction() {
-  let input = document.getElementById("search").value.toLowerCase();
-  let cards = document.getElementsByClassName("business");
+/* TOGGLE FORM */
 
-  for (let i = 0; i < cards.length; i++) {
-    let text = cards[i].innerText.toLowerCase();
-    cards[i].style.display = text.includes(input) ? "" : "none";
-  }
+function toggleForm(){
+
+let form = document.getElementById("form");
+
+form.style.display =
+form.style.display === "block"
+? "none"
+: "block";
+
+window.scrollTo({
+top:form.offsetTop - 80,
+behavior:'smooth'
+});
+
 }
 
-function filterCategory(category) {
-  let cards = document.getElementsByClassName("business");
+/* SEARCH */
 
-  for (let i = 0; i < cards.length; i++) {
-    let cardCategory = cards[i].getAttribute("data-category");
+function searchFunction(){
 
-    if (category === "all" || cardCategory === category) {
-      cards[i].style.display = "";
-    } else {
-      cards[i].style.display = "none";
-    }
-  }
+let input =
+document.getElementById("search")
+.value.toLowerCase();
+
+let cards =
+document.getElementsByClassName("business");
+
+for(let i=0;i<cards.length;i++){
+
+let text =
+cards[i].innerText.toLowerCase();
+
+cards[i].style.display =
+text.includes(input)
+? ""
+: "none";
+
 }
 
-function addReview(id) {
-  let user = prompt("Your Name:");
-  if (!user) return;
-
-  let rating = prompt("Rating (1 to 5):");
-  if (!rating) return;
-
-  let comment = prompt("Your Review:");
-  if (!comment) return;
-
-  db.collection("businesses")
-    .doc(id)
-    .collection("reviews")
-    .add({
-      user: user,
-      rating: rating,
-      comment: comment
-    });
-
-  alert("Review Added!");
 }
 
-function loadReviews(id) {
-  db.collection("businesses")
-    .doc(id)
-    .collection("reviews")
-    .onSnapshot((snapshot) => {
+/* FILTER */
 
-      let box = document.getElementById("reviews-" + id);
-      if (!box) return;
+function filterCategory(category){
 
-      box.innerHTML = "<h4>Reviews</h4>";
+let cards =
+document.getElementsByClassName("business");
 
-      snapshot.forEach((doc) => {
-        let r = doc.data();
+for(let i=0;i<cards.length;i++){
 
-        box.innerHTML += `
-          <p>⭐ ${r.rating} - <strong>${r.user}</strong><br>${r.comment}</p>
-        `;
-      });
+let cardCategory =
+cards[i].getAttribute("data-category");
 
-    });
+cards[i].style.display =
+(category === "all" || cardCategory === category)
+? ""
+: "none";
+
 }
+
+}
+
+/* REVIEWS */
+
+function addReview(id){
+
+let user = prompt("Your Name:");
+if(!user) return;
+
+let rating = prompt("Rating (1-5):");
+if(!rating) return;
+
+let comment = prompt("Review:");
+if(!comment) return;
+
+db.collection("businesses")
+.doc(id)
+.collection("reviews")
+.add({
+user,
+rating,
+comment
+});
+
+alert("Review Added!");
+
+}
+
+function loadReviews(id){
+
+db.collection("businesses")
+.doc(id)
+.collection("reviews")
+.onSnapshot((snapshot)=>{
+
+let box =
+document.getElementById("reviews-"+id);
+
+if(!box) return;
+
+box.innerHTML = "";
+
+snapshot.forEach((doc)=>{
+
+let r = doc.data();
+
+box.innerHTML += `
+<div style="
+margin-top:10px;
+padding:12px;
+background:rgba(255,255,255,0.06);
+border-radius:12px;
+">
+⭐ ${r.rating}
+<strong>${r.user}</strong>
+<br>
+${r.comment}
+</div>
+`;
+
+});
+
+});
+
+}
+
 </script>
 
 </body>
