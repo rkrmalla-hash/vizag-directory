@@ -1,141 +1,323 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Admin Panel - Vizag Directory</title>
 
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body{
-      font-family:Arial;
-      margin:20px;
-      background:#f4f6f8;
-    }
+<title>Admin Dashboard - SISYP</title>
 
-    h1{
-      color:#1a237e;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    .card{
-      background:white;
-      padding:15px;
-      margin:12px 0;
-      border-radius:10px;
-      box-shadow:0 2px 6px rgba(0,0,0,0.1);
-    }
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    .btn{
-      border:none;
-      padding:8px 12px;
-      margin-right:5px;
-      border-radius:6px;
-      color:white;
-      cursor:pointer;
-    }
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 
-    .approve{background:green;}
-    .delete{background:red;}
+<style>
 
-    .logout{
-      background:#000;
-      float:right;
-    }
-  </style>
+body{
+margin:0;
+font-family:'Inter',sans-serif;
+background:#0f172a;
+color:white;
+display:flex;
+}
+
+/* Sidebar */
+
+.sidebar{
+width:260px;
+height:100vh;
+background:#111827;
+padding:30px;
+position:fixed;
+}
+
+.sidebar h2{
+margin-bottom:40px;
+}
+
+.sidebar a{
+display:block;
+color:#cbd5e1;
+text-decoration:none;
+margin-bottom:20px;
+font-weight:500;
+}
+
+.sidebar a:hover{
+color:white;
+}
+
+/* Main */
+
+.main{
+margin-left:260px;
+padding:40px;
+width:100%;
+}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:35px;
+}
+
+.logout{
+padding:12px 20px;
+border:none;
+border-radius:12px;
+background:#ef4444;
+color:white;
+cursor:pointer;
+}
+
+/* Stats */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-bottom:40px;
+}
+
+.stat-card{
+background:#1e293b;
+padding:25px;
+border-radius:20px;
+}
+
+.stat-card h3{
+font-size:32px;
+}
+
+/* Business Cards */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:24px;
+}
+
+.card{
+background:#1e293b;
+padding:25px;
+border-radius:24px;
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.btn-group{
+display:flex;
+gap:10px;
+margin-top:20px;
+}
+
+.btn{
+flex:1;
+padding:12px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-weight:700;
+}
+
+.approve{
+background:#22c55e;
+color:white;
+}
+
+.delete{
+background:#ef4444;
+color:white;
+}
+
+</style>
+
 </head>
 
 <body>
 
-<button class="btn logout" onclick="logout()">Logout</button>
+<div class="sidebar">
 
-<h1>Admin Panel - Pending Businesses</h1>
+<h2>SISYP Admin</h2>
 
-<div id="list">Loading...</div>
+<a href="#">Dashboard</a>
+<a href="#">Pending Listings</a>
+<a href="#">Reviews</a>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+<h1>Pending Businesses</h1>
+
+<button class="logout" onclick="logout()">
+Logout
+</button>
+
+</div>
+
+<div class="stats">
+
+<div class="stat-card">
+<p>Pending Approvals</p>
+<h3 id="pendingCount">0</h3>
+</div>
+
+</div>
+
+<div class="grid" id="list"></div>
+
+</div>
 
 <script>
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBEwT_Inq8SpSg6rGknWhXHDX6ub3XJqRo",
-  authDomain: "vizag-directory-776bb.firebaseapp.com",
-  projectId: "vizag-directory-776bb",
-  storageBucket: "vizag-directory-776bb.appspot.com",
-  messagingSenderId: "60115144725",
-  appId: "1:60115144725:web:10d21d71913a73f9417e1c"
+apiKey: "AIzaSyBEwT_Inq8SpSg6rGknWhXHDX6ub3XJqRo",
+authDomain: "vizag-directory-776bb.firebaseapp.com",
+projectId: "vizag-directory-776bb",
+storageBucket: "vizag-directory-776bb.appspot.com",
+messagingSenderId: "60115144725",
+appId: "1:60115144725:web:10d21d71913a73f9417e1c"
 };
 
 firebase.initializeApp(firebaseConfig);
+
 const db = firebase.firestore();
 const auth = firebase.auth();
 
-// 🔐 AUTH CHECK
-auth.onAuthStateChanged((user) => {
+/* AUTH */
 
-  if (!user || user.email !== "rkrmalla@gmail.com") {
-    window.location.href = "login.html";
-    return;
-  }
+auth.onAuthStateChanged((user)=>{
 
-  // ✅ LOAD DATA ONLY AFTER LOGIN
-  db.collection("businesses")
-  .where("status","==","pending")
-  .onSnapshot((snapshot)=>{
+if(!user || user.email !== "rkrmalla@gmail.com"){
 
-    let list = document.getElementById("list");
+window.location.href = "login.html";
+return;
 
-    if(snapshot.empty){
-      list.innerHTML = "No pending businesses";
-      return;
-    }
+}
 
-    list.innerHTML = "";
-
-    snapshot.forEach((doc)=>{
-      let data = doc.data();
-
-      let card = document.createElement("div");
-      card.className = "card";
-
-      card.innerHTML = `
-        <h3>${data.name}</h3>
-        <p>Category: ${data.category}</p>
-        <p>Phone: ${data.phone}</p>
-        <p><a href="${data.map}" target="_blank">View Map</a></p>
-
-        <button class="btn approve" onclick="approveBusiness('${doc.id}')">Approve</button>
-        <button class="btn delete" onclick="deleteBusiness('${doc.id}')">Delete</button>
-      `;
-
-      list.appendChild(card);
-    });
-
-  });
+loadBusinesses();
 
 });
 
-// ✅ APPROVE
+/* LOAD */
+
+function loadBusinesses(){
+
+db.collection("businesses")
+.where("status","==","pending")
+.onSnapshot((snapshot)=>{
+
+document.getElementById("pendingCount")
+.innerText = snapshot.size;
+
+let list = document.getElementById("list");
+
+list.innerHTML = "";
+
+snapshot.forEach((doc)=>{
+
+let data = doc.data();
+
+let card = document.createElement("div");
+
+card.className = "card";
+
+card.innerHTML = `
+
+<h3>${data.name}</h3>
+
+<p><strong>Category:</strong> ${data.category}</p>
+
+<p><strong>Phone:</strong> ${data.phone}</p>
+
+<p><strong>Address:</strong> ${data.address}</p>
+
+<div class="btn-group">
+
+<button class="btn approve"
+onclick="approveBusiness('${doc.id}')">
+Approve
+</button>
+
+<button class="btn delete"
+onclick="deleteBusiness('${doc.id}')">
+Delete
+</button>
+
+</div>
+`;
+
+list.appendChild(card);
+
+});
+
+});
+
+}
+
+/* APPROVE */
+
 function approveBusiness(id){
-  db.collection("businesses").doc(id).update({
-    status:"approved"
-  })
-  .then(() => alert("Approved Successfully"))
-  .catch(err => alert("Error: " + err.message));
+
+db.collection("businesses")
+.doc(id)
+.update({
+status:"approved"
+})
+
+.then(()=>{
+
+alert("Approved Successfully");
+
+});
+
 }
 
-// ✅ DELETE
+/* DELETE */
+
 function deleteBusiness(id){
-  if(confirm("Delete this business?")){
-    db.collection("businesses").doc(id).delete()
-    .then(() => alert("Deleted Successfully"))
-    .catch(err => alert("Error: " + err.message));
-  }
+
+if(confirm("Delete business?")){
+
+db.collection("businesses")
+.doc(id)
+.delete()
+
+.then(()=>{
+
+alert("Deleted");
+
+});
+
 }
 
-// 🔓 LOGOUT
-function logout(){
-  firebase.auth().signOut().then(()=>{
-    window.location.href = "login.html";
-  });
 }
+
+/* LOGOUT */
+
+function logout(){
+
+firebase.auth()
+.signOut()
+.then(()=>{
+
+window.location.href = "login.html";
+
+});
+
+}
+
 </script>
 
 </body>
