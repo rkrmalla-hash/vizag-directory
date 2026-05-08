@@ -1,8 +1,3 @@
-# Updated Professional `index.html`
-
-Replace your existing `index.html` completely with the code below.
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,31 +8,392 @@ Replace your existing `index.html` completely with the code below.
 <title>Vizag Business Directory | Andhra Pradesh Services - SISYP</title>
 
 <meta name="description" content="Discover trusted businesses, hospitals, restaurants, hotels and services in Andhra Pradesh. Premium business listings by SISYP Directory.">
+
 <meta name="keywords" content="Vizag directory, Andhra Pradesh businesses, hospitals, hotels, restaurants">
+
 <meta name="robots" content="index, follow">
 
 <meta property="og:title" content="SISYP Business Directory">
 <meta property="og:description" content="Find trusted businesses across Andhra Pradesh">
 <meta property="og:type" content="website">
-<meta property="og:image" content="logo.png">
-
-<meta name="theme-color" content="#0f172a">
 
 <link rel="icon" href="logo.png">
-<link rel="canonical" href="https://yourdomain.com/">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-<script src="js/firebase.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:#0f172a;
+color:white;
+overflow-x:hidden;
+}
+
+/* Animated Background */
+
+body::before{
+content:'';
+position:fixed;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at top left,#2563eb55,transparent 30%),
+radial-gradient(circle at bottom right,#7c3aed55,transparent 30%);
+z-index:-1;
+}
+
+/* Navbar */
+
+.navbar{
+position:sticky;
+top:0;
+z-index:999;
+backdrop-filter:blur(18px);
+background:rgba(15,23,42,0.75);
+border-bottom:1px solid rgba(255,255,255,0.1);
+padding:18px 6%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:12px;
+font-size:24px;
+font-weight:800;
+}
+
+.logo img{
+width:52px;
+height:52px;
+border-radius:14px;
+}
+
+.nav-links{
+display:flex;
+gap:20px;
+}
+
+.nav-links a{
+color:white;
+text-decoration:none;
+font-weight:500;
+transition:0.3s;
+}
+
+.nav-links a:hover{
+color:#60a5fa;
+}
+
+/* Hero */
+
+.hero{
+padding:100px 6%;
+text-align:center;
+}
+
+.hero h1{
+font-size:60px;
+font-weight:800;
+line-height:1.1;
+margin-bottom:20px;
+background:linear-gradient(to right,#ffffff,#60a5fa);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero p{
+font-size:20px;
+color:#cbd5e1;
+max-width:700px;
+margin:auto;
+margin-bottom:40px;
+}
+
+/* Search */
+
+.search-wrapper{
+max-width:900px;
+margin:auto;
+display:flex;
+gap:12px;
+background:rgba(255,255,255,0.08);
+padding:15px;
+border-radius:24px;
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.1);
+}
+
+.search-wrapper input{
+flex:1;
+padding:18px;
+border:none;
+outline:none;
+border-radius:16px;
+font-size:16px;
+background:#fff;
+color:#111827;
+}
+
+.search-btn{
+padding:18px 28px;
+border:none;
+border-radius:16px;
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+color:white;
+font-weight:700;
+cursor:pointer;
+transition:0.3s;
+}
+
+.search-btn:hover{
+transform:translateY(-2px);
+}
+
+/* Categories */
+
+.section{
+padding:70px 6%;
+}
+
+.section-title{
+font-size:36px;
+margin-bottom:35px;
+font-weight:800;
+}
+
+.category-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+gap:20px;
+}
+
+.category-card{
+background:rgba(255,255,255,0.08);
+padding:28px;
+border-radius:22px;
+text-align:center;
+backdrop-filter:blur(18px);
+transition:0.3s;
+cursor:pointer;
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.category-card:hover{
+transform:translateY(-8px);
+background:rgba(255,255,255,0.12);
+}
+
+.category-card i{
+font-size:34px;
+margin-bottom:15px;
+color:#60a5fa;
+}
+
+/* Add Button */
+
+.floating-btn{
+position:fixed;
+bottom:25px;
+right:25px;
+width:65px;
+height:65px;
+border:none;
+border-radius:50%;
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+color:white;
+font-size:24px;
+cursor:pointer;
+box-shadow:0 15px 40px rgba(37,99,235,0.4);
+z-index:999;
+}
+
+/* Business Grid */
+
+.business-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:28px;
+}
+
+/* Business Card */
+
+.card{
+background:rgba(255,255,255,0.08);
+border-radius:24px;
+overflow:hidden;
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.1);
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 25px 60px rgba(0,0,0,0.3);
+}
+
+.business-img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.card-content{
+padding:22px;
+}
+
+.card h3{
+font-size:24px;
+margin-bottom:10px;
+}
+
+.badge{
+display:inline-block;
+padding:7px 14px;
+border-radius:50px;
+background:#2563eb;
+font-size:13px;
+margin-bottom:12px;
+}
+
+.rating{
+color:#facc15;
+margin:10px 0;
+}
+
+.card p{
+color:#d1d5db;
+margin-bottom:8px;
+}
+
+.btn-group{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-top:18px;
+}
+
+.btn{
+flex:1;
+padding:12px;
+border:none;
+border-radius:14px;
+font-weight:600;
+cursor:pointer;
+text-decoration:none;
+text-align:center;
+transition:0.3s;
+}
+
+.whatsapp{
+background:#25D366;
+color:white;
+}
+
+.call{
+background:#0ea5e9;
+color:white;
+}
+
+.map{
+background:#f97316;
+color:white;
+}
+
+.review{
+background:#7c3aed;
+color:white;
+}
+
+.btn:hover{
+transform:translateY(-3px);
+}
+
+/* Form */
+
+.form-box{
+display:none;
+margin:50px auto;
+max-width:700px;
+background:rgba(255,255,255,0.08);
+padding:35px;
+border-radius:30px;
+backdrop-filter:blur(20px);
+}
+
+.form-box input,
+.form-box textarea,
+.form-box select{
+width:100%;
+padding:16px;
+margin-bottom:16px;
+border:none;
+border-radius:14px;
+background:white;
+font-size:15px;
+}
+
+.form-box button{
+width:100%;
+padding:18px;
+border:none;
+border-radius:16px;
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+color:white;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+}
+
+/* Footer */
+
+footer{
+padding:50px 6%;
+text-align:center;
+color:#94a3b8;
+border-top:1px solid rgba(255,255,255,0.08);
+margin-top:60px;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:42px;
+}
+
+.search-wrapper{
+flex-direction:column;
+}
+
+.nav-links{
+display:none;
+}
+
+}
+
+</style>
 
 </head>
 
@@ -48,7 +404,7 @@ Replace your existing `index.html` completely with the code below.
 <nav class="navbar">
 
 <div class="logo">
-<img src="logo.png" alt="SISYP Logo">
+<img src="logo.png">
 <span>SISYP Directory</span>
 </div>
 
@@ -56,7 +412,6 @@ Replace your existing `index.html` completely with the code below.
 <a href="#">Home</a>
 <a href="#categories">Categories</a>
 <a href="#businesses">Businesses</a>
-<a href="login.html">Login</a>
 </div>
 
 </nav>
@@ -73,8 +428,7 @@ Discover top-rated businesses, hospitals, restaurants, hotels and services acros
 
 <div class="search-wrapper">
 
-<input
-type="text"
+<input type="text"
 id="search"
 placeholder="Search businesses, categories, services..."
 onkeyup="searchFunction()">
@@ -130,13 +484,11 @@ Search
 
 </section>
 
-<!-- ADD BUSINESS FORM -->
+<!-- ADD FORM -->
 
 <div class="form-box" id="form">
 
-<h2 style="margin-bottom:25px;">
-Add Your Business
-</h2>
+<h2 style="margin-bottom:25px;">Add Your Business</h2>
 
 <input id="bname" placeholder="Business Name">
 
@@ -171,15 +523,13 @@ Submit Business
 
 <section class="section" id="businesses">
 
-<h2 class="section-title">
-Featured Businesses
-</h2>
+<h2 class="section-title">Featured Businesses</h2>
 
 <div class="business-grid" id="list"></div>
 
 </section>
 
-<!-- FLOATING BUTTON -->
+<!-- Floating Button -->
 
 <button class="floating-btn" onclick="toggleForm()">
 +
@@ -189,9 +539,7 @@ Featured Businesses
 
 <footer>
 
-<p>
-© 2026 SISYP Business Directory. All Rights Reserved.
-</p>
+<p>© 2026 SISYP Business Directory. All Rights Reserved.</p>
 
 </footer>
 
@@ -216,9 +564,7 @@ db.collection("businesses")
 .where("status","==","approved")
 .onSnapshot((snapshot)=>{
 
-const list = document.getElementById("list");
-
-list.innerHTML = "";
+document.getElementById("list").innerHTML="";
 
 snapshot.forEach((doc)=>{
 
@@ -228,13 +574,12 @@ let card = document.createElement("div");
 
 card.className = "card business";
 
-card.setAttribute("data-category", data.category);
+card.setAttribute("data-category",data.category);
 
 card.innerHTML = `
 
 <img class="business-img"
-src="${data.image || 'https://via.placeholder.com/400x250'}"
-alt="${data.name}">
+src="${data.image || 'https://via.placeholder.com/400x250'}">
 
 <div class="card-content">
 
@@ -246,40 +591,31 @@ alt="${data.name}">
 ★★★★★
 </div>
 
-<p>
-<i class="fa-solid fa-location-dot"></i>
-${data.address || ''}
-</p>
+<p>${data.address || ''}</p>
 
-<p>
-${data.desc || ''}
-</p>
+<p>${data.desc || ''}</p>
 
 <div class="btn-group">
 
 <a class="btn whatsapp"
 href="https://wa.me/${data.phone}"
 target="_blank">
-<i class="fa-brands fa-whatsapp"></i>
 WhatsApp
 </a>
 
 <a class="btn call"
 href="tel:${data.phone}">
-<i class="fa-solid fa-phone"></i>
 Call
 </a>
 
 <a class="btn map"
 href="${data.map}"
 target="_blank">
-<i class="fa-solid fa-map-location-dot"></i>
 Map
 </a>
 
 <button class="btn review"
 onclick="addReview('${doc.id}')">
-<i class="fa-solid fa-star"></i>
 Review
 </button>
 
@@ -290,7 +626,7 @@ Review
 </div>
 `;
 
-list.appendChild(card);
+document.getElementById("list").appendChild(card);
 
 loadReviews(doc.id);
 
@@ -327,6 +663,8 @@ status:"pending"
 });
 
 alert("Business submitted for approval!");
+
+document.getElementById("form").reset?.();
 
 location.reload();
 
@@ -424,7 +762,7 @@ alert("Review Added!");
 
 function loadReviews(id){
 
- db.collection("businesses")
+db.collection("businesses")
 .doc(id)
 .collection("reviews")
 .onSnapshot((snapshot)=>{
@@ -464,14 +802,3 @@ ${r.comment}
 
 </body>
 </html>
-```
-
----
-
-Now create:
-
-```text
-css/style.css
-```
-
-Then move all your old CSS into that file.
