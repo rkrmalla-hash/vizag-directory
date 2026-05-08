@@ -12,7 +12,7 @@
 <meta name="keywords" content="Vizag directory, Andhra Pradesh businesses, hospitals, hotels, restaurants">
 
 <meta name="robots" content="index, follow">
-  
+
 <meta name="theme-color" content="#0f172a">
 
 <meta property="og:title" content="SISYP Business Directory">
@@ -30,7 +30,7 @@
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
+
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
@@ -51,7 +51,6 @@ font-family:'Inter',sans-serif;
 background:#0f172a;
 color:white;
 overflow-x:hidden;
-padding-top:0;
 }
 
 /* Animated Background */
@@ -82,12 +81,6 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 }
-border-bottom:1px solid rgba(255,255,255,0.1);
-padding:18px 6%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
 
 .logo{
 display:flex;
@@ -103,6 +96,8 @@ height:42px;
 border-radius:12px;
 object-fit:cover;
 }
+
+/* Nav Links */
 
 .nav-links{
 display:flex;
@@ -185,7 +180,7 @@ transition:0.3s;
 transform:translateY(-2px);
 }
 
-/* Categories */
+/* Sections */
 
 .section{
 padding:70px 6%;
@@ -196,6 +191,8 @@ font-size:36px;
 margin-bottom:35px;
 font-weight:800;
 }
+
+/* Categories */
 
 .category-grid{
 display:grid;
@@ -225,7 +222,7 @@ margin-bottom:15px;
 color:#60a5fa;
 }
 
-/* Add Button */
+/* Floating Button */
 
 .floating-btn{
 position:fixed;
@@ -300,6 +297,8 @@ margin:10px 0;
 color:#d1d5db;
 margin-bottom:8px;
 }
+
+/* Buttons */
 
 .btn-group{
 display:flex;
@@ -418,6 +417,7 @@ display:none;
 
 <nav class="navbar">
 
+<div class="logo">
 <img src="logo.png" alt="SISYP Business Directory Logo">
 <span>SISYP Directory</span>
 </div>
@@ -593,8 +593,9 @@ card.setAttribute("data-category",data.category);
 card.innerHTML = `
 
 <img class="business-img"
-src="${data.image}"
-loading="lazy"> || 'https://via.placeholder.com/400x250'}">
+src="${data.image || 'https://via.placeholder.com/400x250'}"
+alt="${data.name}"
+loading="lazy">
 
 <div class="card-content">
 
