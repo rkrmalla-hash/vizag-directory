@@ -5,26 +5,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Best Business Directory in Visakhapatnam | Hospitals, Hotels, Restaurants - SISYP</title>
+<title>Best Business Directory in Visakhapatnam | SISYP Directory</title>
 
-<meta name="description" content="Find trusted hospitals, hotels, restaurants, schools and local businesses in Visakhapatnam and Andhra Pradesh. Explore verified business listings on SISYP Directory.">
+<meta name="description" content="Find trusted businesses, hospitals, hotels, restaurants and services across Andhra Pradesh.">
 
-<meta name="keywords" content="Vizag directory, Andhra Pradesh businesses, hospitals, hotels, restaurants">
+<meta name="keywords" content="Vizag directory, hospitals, restaurants, hotels, Andhra Pradesh businesses">
 
 <meta name="robots" content="index, follow">
 
 <meta name="theme-color" content="#0f172a">
 
-<meta property="og:title" content="SISYP Business Directory">
-<meta property="og:description" content="Find trusted businesses across Andhra Pradesh">
+<meta property="og:title" content="SISYP Directory">
+<meta property="og:description" content="Trusted Business Listings Across Andhra Pradesh">
 <meta property="og:type" content="website">
 <meta property="og:image" content="logo.png">
 
 <link rel="icon" href="logo.png">
 
 <link rel="canonical" href="https://sisypdirectory.in/">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -33,6 +31,17 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"LocalBusiness",
+"name":"SISYP Directory",
+"url":"https://sisypdirectory.in",
+"logo":"logo.png",
+"description":"Business Directory in Visakhapatnam and Andhra Pradesh"
+}
+</script>
 
 <style>
 
@@ -53,8 +62,6 @@ color:white;
 overflow-x:hidden;
 }
 
-/* Animated Background */
-
 body::before{
 content:'';
 position:fixed;
@@ -66,14 +73,11 @@ radial-gradient(circle at bottom right,#7c3aed55,transparent 30%);
 z-index:-1;
 }
 
-/* Navbar */
-
 .navbar{
 position:sticky;
 top:0;
 z-index:9999;
 backdrop-filter:blur(18px);
--webkit-backdrop-filter:blur(18px);
 background:rgba(15,23,42,0.92);
 border-bottom:1px solid rgba(255,255,255,0.08);
 padding:18px 6%;
@@ -97,8 +101,6 @@ border-radius:12px;
 object-fit:cover;
 }
 
-/* Nav Links */
-
 .nav-links{
 display:flex;
 gap:20px;
@@ -114,8 +116,6 @@ transition:0.3s;
 .nav-links a:hover{
 color:#60a5fa;
 }
-
-/* Hero */
 
 .hero{
 padding:100px 6%;
@@ -140,10 +140,8 @@ margin:auto;
 margin-bottom:40px;
 }
 
-/* Search */
-
 .search-wrapper{
-max-width:900px;
+max-width:1000px;
 margin:auto;
 display:flex;
 gap:12px;
@@ -152,6 +150,20 @@ padding:15px;
 border-radius:24px;
 backdrop-filter:blur(20px);
 border:1px solid rgba(255,255,255,0.1);
+}
+
+.search-wrapper:focus-within{
+box-shadow:0 0 35px rgba(37,99,235,0.25);
+}
+
+.location-select{
+padding:18px;
+border:none;
+border-radius:16px;
+background:white;
+font-size:15px;
+outline:none;
+min-width:180px;
 }
 
 .search-wrapper input{
@@ -180,7 +192,60 @@ transition:0.3s;
 transform:translateY(-2px);
 }
 
-/* Sections */
+.hero-stats{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+margin-top:40px;
+}
+
+.stat-box{
+background:rgba(255,255,255,0.08);
+padding:22px;
+border-radius:22px;
+min-width:150px;
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.08);
+transition:0.3s;
+}
+
+.stat-box:hover{
+transform:translateY(-6px);
+}
+
+.stat-box h3{
+font-size:28px;
+color:#60a5fa;
+}
+
+.stat-box p{
+margin-top:8px;
+color:#cbd5e1;
+}
+
+.popular-searches{
+margin-top:35px;
+display:flex;
+justify-content:center;
+gap:12px;
+flex-wrap:wrap;
+align-items:center;
+}
+
+.popular-searches button{
+padding:10px 18px;
+border:none;
+border-radius:50px;
+background:rgba(255,255,255,0.08);
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+.popular-searches button:hover{
+background:#2563eb;
+}
 
 .section{
 padding:70px 6%;
@@ -191,8 +256,6 @@ font-size:36px;
 margin-bottom:35px;
 font-weight:800;
 }
-
-/* Categories */
 
 .category-grid{
 display:grid;
@@ -209,6 +272,23 @@ backdrop-filter:blur(18px);
 transition:0.3s;
 cursor:pointer;
 border:1px solid rgba(255,255,255,0.08);
+position:relative;
+overflow:hidden;
+}
+
+.category-card::before{
+content:'';
+position:absolute;
+width:100%;
+height:100%;
+background:linear-gradient(135deg,transparent,rgba(255,255,255,0.05));
+top:0;
+left:-100%;
+transition:0.5s;
+}
+
+.category-card:hover::before{
+left:100%;
 }
 
 .category-card:hover{
@@ -222,33 +302,11 @@ margin-bottom:15px;
 color:#60a5fa;
 }
 
-/* Floating Button */
-
-.floating-btn{
-position:fixed;
-bottom:25px;
-right:25px;
-width:65px;
-height:65px;
-border:none;
-border-radius:50%;
-background:linear-gradient(135deg,#2563eb,#7c3aed);
-color:white;
-font-size:24px;
-cursor:pointer;
-box-shadow:0 15px 40px rgba(37,99,235,0.4);
-z-index:999;
-}
-
-/* Business Grid */
-
 .business-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
 gap:28px;
 }
-
-/* Business Card */
 
 .card{
 background:rgba(255,255,255,0.08);
@@ -257,6 +315,7 @@ overflow:hidden;
 backdrop-filter:blur(20px);
 border:1px solid rgba(255,255,255,0.1);
 transition:0.4s;
+position:relative;
 }
 
 .card:hover{
@@ -268,15 +327,15 @@ box-shadow:0 25px 60px rgba(0,0,0,0.3);
 width:100%;
 height:220px;
 object-fit:cover;
+transition:0.5s;
+}
+
+.card:hover .business-img{
+transform:scale(1.05);
 }
 
 .card-content{
 padding:22px;
-}
-
-.card h3{
-font-size:24px;
-margin-bottom:10px;
 }
 
 .badge{
@@ -288,17 +347,32 @@ font-size:13px;
 margin-bottom:12px;
 }
 
+.verified-badge{
+display:inline-flex;
+align-items:center;
+gap:6px;
+background:#16a34a;
+padding:6px 12px;
+border-radius:50px;
+font-size:12px;
+margin-bottom:12px;
+}
+
 .rating{
 color:#facc15;
 margin:10px 0;
+}
+
+.rating-count{
+font-size:13px;
+color:#94a3b8;
+margin-bottom:10px;
 }
 
 .card p{
 color:#d1d5db;
 margin-bottom:8px;
 }
-
-/* Buttons */
 
 .btn-group{
 display:flex;
@@ -319,82 +393,73 @@ text-align:center;
 transition:0.3s;
 }
 
-.whatsapp{
-background:#25D366;
-color:white;
-}
-
-.call{
-background:#0ea5e9;
-color:white;
-}
-
-.map{
-background:#f97316;
-color:white;
-}
-
-.review{
-background:#7c3aed;
-color:white;
-}
+.whatsapp{background:#25D366;color:white;}
+.call{background:#0ea5e9;color:white;}
+.map{background:#f97316;color:white;}
+.review{background:#7c3aed;color:white;}
 
 .btn:hover{
 transform:translateY(-3px);
 }
 
-/* Form */
-
-.form-box{
-display:none;
-margin:50px auto;
-max-width:700px;
-background:rgba(255,255,255,0.08);
-padding:35px;
-border-radius:30px;
-backdrop-filter:blur(20px);
-}
-
-.form-box input,
-.form-box textarea,
-.form-box select{
-width:100%;
-padding:16px;
-margin-bottom:16px;
-border:none;
-border-radius:14px;
-background:white;
-font-size:15px;
-}
-
-.form-box button{
-width:100%;
-padding:18px;
-border:none;
-border-radius:16px;
-background:linear-gradient(135deg,#2563eb,#7c3aed);
-color:white;
-font-size:17px;
-font-weight:700;
-cursor:pointer;
-}
-
-/* Footer */
-
 footer{
-padding:50px 6%;
-text-align:center;
-color:#94a3b8;
+padding:70px 6%;
+margin-top:70px;
 border-top:1px solid rgba(255,255,255,0.08);
-margin-top:60px;
 }
 
-/* Mobile */
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:40px;
+margin-bottom:40px;
+}
+
+.footer-grid h3,
+.footer-grid h4{
+margin-bottom:18px;
+}
+
+.footer-grid a,
+.footer-grid p{
+color:#94a3b8;
+text-decoration:none;
+display:block;
+margin-bottom:10px;
+}
+
+.social-icons{
+display:flex;
+gap:15px;
+}
+
+.social-icons a{
+width:42px;
+height:42px;
+border-radius:50%;
+background:rgba(255,255,255,0.08);
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.copyright{
+text-align:center;
+color:#64748b;
+}
 
 @media(max-width:768px){
 
+.hero{
+padding:70px 5%;
+}
+
 .hero h1{
-font-size:42px;
+font-size:38px;
+}
+
+.hero p{
+font-size:17px;
 }
 
 .search-wrapper{
@@ -405,6 +470,23 @@ flex-direction:column;
 display:none;
 }
 
+.business-grid{
+grid-template-columns:1fr;
+}
+
+.btn-group{
+flex-direction:column;
+}
+
+.footer-grid{
+grid-template-columns:1fr;
+text-align:center;
+}
+
+.social-icons{
+justify-content:center;
+}
+
 }
 
 </style>
@@ -413,12 +495,10 @@ display:none;
 
 <body>
 
-<!-- NAVBAR -->
-
 <nav class="navbar">
 
 <div class="logo">
-<img src="logo.png" alt="SISYP Business Directory Logo">
+<img src="logo.png" alt="SISYP Logo">
 <span>SISYP Directory</span>
 </div>
 
@@ -430,22 +510,24 @@ display:none;
 
 </nav>
 
-<!-- HERO -->
-
 <section class="hero">
 
-<h1>Find Trusted Local Businesses</h1>
+<h1>Find Trusted Local Businesses in Andhra Pradesh</h1>
 
 <p>
-Discover top-rated businesses, hospitals, restaurants, hotels and services across Andhra Pradesh.
+Discover verified hospitals, hotels, restaurants, schools and local services across Visakhapatnam and Andhra Pradesh.
 </p>
 
 <div class="search-wrapper">
 
-<input type="text"
-id="search"
-placeholder="Search businesses, categories, services..."
-onkeyup="searchFunction()">
+<select class="location-select">
+<option>Visakhapatnam</option>
+<option>Vijayawada</option>
+<option>Guntur</option>
+<option>Tirupati</option>
+</select>
+
+<input type="text" placeholder="Search businesses, categories, services...">
 
 <button class="search-btn">
 <i class="fa-solid fa-magnifying-glass"></i>
@@ -454,367 +536,83 @@ Search
 
 </div>
 
-</section>
+<div class="hero-stats">
 
-<!-- CATEGORIES -->
-
-<section class="section" id="categories">
-
-<h2 class="section-title">Popular Categories</h2>
-
-<div class="category-grid">
-
-<div class="category-card" onclick="filterCategory('Hospitals')">
-<i class="fa-solid fa-hospital"></i>
-<h3>Hospitals</h3>
+<div class="stat-box">
+<h3>5000+</h3>
+<p>Businesses</p>
 </div>
 
-<div class="category-card" onclick="filterCategory('Hotels')">
-<i class="fa-solid fa-hotel"></i>
-<h3>Hotels</h3>
+<div class="stat-box">
+<h3>120+</h3>
+<p>Categories</p>
 </div>
 
-<div class="category-card" onclick="filterCategory('Restaurants')">
-<i class="fa-solid fa-utensils"></i>
-<h3>Restaurants</h3>
+<div class="stat-box">
+<h3>Verified</h3>
+<p>Listings</p>
 </div>
 
-<div class="category-card" onclick="filterCategory('Schools')">
-<i class="fa-solid fa-school"></i>
-<h3>Schools</h3>
+<div class="stat-box">
+<h3>24/7</h3>
+<p>Support</p>
 </div>
 
-<div class="category-card" onclick="filterCategory('Real Estate')">
-<i class="fa-solid fa-building"></i>
-<h3>Real Estate</h3>
 </div>
 
-<div class="category-card" onclick="filterCategory('all')">
-<i class="fa-solid fa-layer-group"></i>
-<h3>All</h3>
-</div>
+<div class="popular-searches">
+
+<span>Popular:</span>
+
+<button>Hospitals</button>
+<button>Hotels</button>
+<button>Restaurants</button>
+<button>Schools</button>
 
 </div>
 
 </section>
-
-<!-- ADD FORM -->
-
-<div class="form-box" id="form">
-
-<h2 style="margin-bottom:25px;">Add Your Business</h2>
-
-<input id="bname" placeholder="Business Name">
-
-<select id="bcategory">
-<option value="">Select Category</option>
-<option>Hospitals</option>
-<option>Schools</option>
-<option>Restaurants</option>
-<option>Hotels</option>
-<option>Real Estate</option>
-<option>Electricians</option>
-<option>Plumbers</option>
-</select>
-
-<input id="baddress" placeholder="Business Address">
-
-<textarea id="bdesc" placeholder="Business Description"></textarea>
-
-<input id="bimage" placeholder="Business Image URL">
-
-<input id="bphone" placeholder="Phone Number">
-
-<input id="bmap" placeholder="Google Maps Link">
-
-<button onclick="addBusiness()">
-Submit Business
-</button>
-
-</div>
-
-<!-- BUSINESS SECTION -->
-
-<section class="section" id="businesses">
-
-<h2 class="section-title">Featured Businesses</h2>
-
-<div class="business-grid" id="list"></div>
-
-</section>
-
-<!-- Floating Button -->
-
-<button class="floating-btn" onclick="toggleForm()">
-+
-</button>
-
-<!-- FOOTER -->
 
 <footer>
 
-<p>© 2026 SISYP Business Directory. All Rights Reserved.</p>
+<div class="footer-grid">
+
+<div>
+<h3>SISYP Directory</h3>
+<p>Find trusted businesses across Andhra Pradesh.</p>
+</div>
+
+<div>
+<h4>Quick Links</h4>
+<a href="#">Home</a>
+<a href="#">Categories</a>
+<a href="#">Businesses</a>
+</div>
+
+<div>
+<h4>Legal</h4>
+<a href="#">Privacy Policy</a>
+<a href="#">Terms & Conditions</a>
+</div>
+
+<div>
+<h4>Follow Us</h4>
+
+<div class="social-icons">
+<a href="#"><i class="fab fa-facebook"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-youtube"></i></a>
+</div>
+
+</div>
+
+</div>
+
+<p class="copyright">
+© 2026 SISYP Business Directory
+</p>
 
 </footer>
-
-<script>
-
-const firebaseConfig = {
-apiKey: "AIzaSyBEwT_Inq8SpSg6rGknWhXHDX6ub3XJqRo",
-authDomain: "vizag-directory-776bb.firebaseapp.com",
-projectId: "vizag-directory-776bb",
-storageBucket: "vizag-directory-776bb.appspot.com",
-messagingSenderId: "60115144725",
-appId: "1:60115144725:web:10d21d71913a73f9417e1c"
-};
-
-firebase.initializeApp(firebaseConfig);
-
-const db = firebase.firestore();
-
-/* LOAD BUSINESSES */
-
-db.collection("businesses")
-.where("status","==","approved")
-.onSnapshot((snapshot)=>{
-
-document.getElementById("list").innerHTML="";
-
-snapshot.forEach((doc)=>{
-
-let data = doc.data();
-
-let card = document.createElement("div");
-
-card.className = "card business";
-
-card.setAttribute("data-category",data.category);
-
-card.innerHTML = `
-
-<img class="business-img"
-src="${data.image || 'https://via.placeholder.com/400x250'}"
-alt="${data.name}"
-loading="lazy">
-
-<div class="card-content">
-
-<span class="badge">${data.category}</span>
-
-<h3>${data.name}</h3>
-
-<div class="rating">
-★★★★★
-</div>
-
-<p>${data.address || ''}</p>
-
-<p>${data.desc || ''}</p>
-
-<div class="btn-group">
-
-<a class="btn whatsapp"
-href="https://wa.me/${data.phone}"
-target="_blank">
-WhatsApp
-</a>
-
-<a class="btn call"
-href="tel:${data.phone}">
-Call
-</a>
-
-<a class="btn map"
-href="${data.map}"
-target="_blank">
-Map
-</a>
-
-<button class="btn review"
-onclick="addReview('${doc.id}')">
-Review
-</button>
-
-</div>
-
-<div id="reviews-${doc.id}" style="margin-top:15px;"></div>
-
-</div>
-`;
-
-document.getElementById("list").appendChild(card);
-
-loadReviews(doc.id);
-
-});
-
-});
-
-/* ADD BUSINESS */
-
-function addBusiness(){
-
-let name = document.getElementById("bname").value;
-let category = document.getElementById("bcategory").value;
-let address = document.getElementById("baddress").value;
-let desc = document.getElementById("bdesc").value;
-let image = document.getElementById("bimage").value;
-let phone = document.getElementById("bphone").value;
-let map = document.getElementById("bmap").value;
-
-if(!name || !category || !address || !desc || !phone || !map){
-alert("Please fill all fields");
-return;
-}
-
-db.collection("businesses").add({
-name,
-category,
-address,
-desc,
-image,
-phone,
-map,
-status:"pending"
-});
-
-alert("Business submitted for approval!");
-
-document.getElementById("form").reset?.();
-
-location.reload();
-
-}
-
-/* TOGGLE FORM */
-
-function toggleForm(){
-
-let form = document.getElementById("form");
-
-form.style.display =
-form.style.display === "block"
-? "none"
-: "block";
-
-window.scrollTo({
-top:form.offsetTop - 80,
-behavior:'smooth'
-});
-
-}
-
-/* SEARCH */
-
-function searchFunction(){
-
-let input =
-document.getElementById("search")
-.value.toLowerCase();
-
-let cards =
-document.getElementsByClassName("business");
-
-for(let i=0;i<cards.length;i++){
-
-let text =
-cards[i].innerText.toLowerCase();
-
-cards[i].style.display =
-text.includes(input)
-? ""
-: "none";
-
-}
-
-}
-
-/* FILTER */
-
-function filterCategory(category){
-
-let cards =
-document.getElementsByClassName("business");
-
-for(let i=0;i<cards.length;i++){
-
-let cardCategory =
-cards[i].getAttribute("data-category");
-
-cards[i].style.display =
-(category === "all" || cardCategory === category)
-? ""
-: "none";
-
-}
-
-}
-
-/* REVIEWS */
-
-function addReview(id){
-
-let user = prompt("Your Name:");
-if(!user) return;
-
-let rating = prompt("Rating (1-5):");
-if(!rating) return;
-
-let comment = prompt("Review:");
-if(!comment) return;
-
-db.collection("businesses")
-.doc(id)
-.collection("reviews")
-.add({
-user,
-rating,
-comment
-});
-
-alert("Review Added!");
-
-}
-
-function loadReviews(id){
-
-db.collection("businesses")
-.doc(id)
-.collection("reviews")
-.onSnapshot((snapshot)=>{
-
-let box =
-document.getElementById("reviews-"+id);
-
-if(!box) return;
-
-box.innerHTML = "";
-
-snapshot.forEach((doc)=>{
-
-let r = doc.data();
-
-box.innerHTML += `
-<div style="
-margin-top:10px;
-padding:12px;
-background:rgba(255,255,255,0.06);
-border-radius:12px;
-">
-⭐ ${r.rating}
-<strong>${r.user}</strong>
-<br>
-${r.comment}
-</div>
-`;
-
-});
-
-});
-
-}
-
-</script>
 
 </body>
 </html>
