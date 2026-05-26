@@ -5,41 +5,77 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Best Business Directory in Visakhapatnam | SISYP Directory</title>
+<title>Best Business Directory in Visakhapatnam | Andhra Pradesh Local Businesses | SISYP Directory</title>
 
-<meta name="description" content="Find trusted businesses, hospitals, hotels, restaurants and services across Andhra Pradesh.">
+<meta name="description" content="SISYP Directory helps you find trusted hospitals, hotels, restaurants, schools, shops and local services in Visakhapatnam and across Andhra Pradesh.">
 
-<meta name="keywords" content="Vizag directory, hospitals, restaurants, hotels, Andhra Pradesh businesses">
+<meta name="keywords" content="Visakhapatnam business directory, Vizag local businesses, Andhra Pradesh business listings, hospitals in Vizag, restaurants in Visakhapatnam, hotels in Andhra Pradesh">
 
 <meta name="robots" content="index, follow">
 
+<meta name="author" content="SISYP Directory">
+
 <meta name="theme-color" content="#0f172a">
 
-<meta property="og:title" content="SISYP Directory">
-<meta property="og:description" content="Trusted Business Listings Across Andhra Pradesh">
-<meta property="og:type" content="website">
-<meta property="og:image" content="logo.png">
+<meta property="og:title" content="SISYP Directory - Trusted Business Listings in Andhra Pradesh">
 
-<link rel="icon" href="logo.png">
+<meta property="og:description" content="Find verified local businesses, hospitals, restaurants, hotels and services in Visakhapatnam and Andhra Pradesh.">
+
+<meta property="og:type" content="website">
+
+<meta property="og:url" content="https://sisypdirectory.in/">
+
+<meta property="og:image" content="https://sisypdirectory.in/logo.png">
+
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="twitter:title" content="SISYP Directory">
+
+<meta name="twitter:description" content="Trusted Business Listings Across Andhra Pradesh">
+
+<meta name="twitter:image" content="https://sisypdirectory.in/logo.png">
 
 <link rel="canonical" href="https://sisypdirectory.in/">
 
+<link rel="icon" href="logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE">
 
 <script type="application/ld+json">
 {
-"@context":"https://schema.org",
-"@type":"LocalBusiness",
-"name":"SISYP Directory",
-"url":"https://sisypdirectory.in",
-"logo":"logo.png",
-"description":"Business Directory in Visakhapatnam and Andhra Pradesh"
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"SISYP Directory",
+  "url":"https://sisypdirectory.in",
+  "logo":"https://sisypdirectory.in/logo.png",
+  "description":"Business directory in Visakhapatnam and Andhra Pradesh",
+  "sameAs":[
+    "https://facebook.com/",
+    "https://instagram.com/",
+    "https://youtube.com/"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  "name":"SISYP Directory",
+  "url":"https://sisypdirectory.in/",
+  "potentialAction":{
+    "@type":"SearchAction",
+    "target":"https://sisypdirectory.in/search?q={search_term_string}",
+    "query-input":"required name=search_term_string"
+  }
 }
 </script>
 
@@ -57,9 +93,10 @@ scroll-behavior:smooth;
 
 body{
 font-family:'Inter',sans-serif;
-background:#0f172a;
+background:#020617;
 color:white;
 overflow-x:hidden;
+line-height:1.6;
 }
 
 body::before{
@@ -68,9 +105,18 @@ position:fixed;
 width:100%;
 height:100%;
 background:
-radial-gradient(circle at top left,#2563eb55,transparent 30%),
-radial-gradient(circle at bottom right,#7c3aed55,transparent 30%);
+radial-gradient(circle at top left,#2563eb44,transparent 35%),
+radial-gradient(circle at bottom right,#7c3aed44,transparent 35%);
 z-index:-1;
+}
+
+img{
+max-width:100%;
+display:block;
+}
+
+a{
+text-decoration:none;
 }
 
 .navbar{
@@ -78,7 +124,7 @@ position:sticky;
 top:0;
 z-index:9999;
 backdrop-filter:blur(18px);
-background:rgba(15,23,42,0.92);
+background:rgba(2,6,23,0.92);
 border-bottom:1px solid rgba(255,255,255,0.08);
 padding:18px 6%;
 display:flex;
@@ -95,21 +141,20 @@ font-weight:800;
 }
 
 .logo img{
-width:42px;
-height:42px;
-border-radius:12px;
+width:45px;
+height:45px;
+border-radius:14px;
 object-fit:cover;
 }
 
 .nav-links{
 display:flex;
-gap:20px;
+gap:25px;
 }
 
 .nav-links a{
 color:white;
-text-decoration:none;
-font-weight:500;
+font-weight:600;
 transition:0.3s;
 }
 
@@ -123,7 +168,7 @@ text-align:center;
 }
 
 .hero h1{
-font-size:60px;
+font-size:62px;
 font-weight:800;
 line-height:1.1;
 margin-bottom:20px;
@@ -135,13 +180,13 @@ background:linear-gradient(to right,#ffffff,#60a5fa);
 .hero p{
 font-size:20px;
 color:#cbd5e1;
-max-width:700px;
+max-width:850px;
 margin:auto;
 margin-bottom:40px;
 }
 
 .search-wrapper{
-max-width:1000px;
+max-width:1050px;
 margin:auto;
 display:flex;
 gap:12px;
@@ -153,7 +198,7 @@ border:1px solid rgba(255,255,255,0.1);
 }
 
 .search-wrapper:focus-within{
-box-shadow:0 0 35px rgba(37,99,235,0.25);
+box-shadow:0 0 35px rgba(37,99,235,0.3);
 }
 
 .location-select{
@@ -163,7 +208,8 @@ border-radius:16px;
 background:white;
 font-size:15px;
 outline:none;
-min-width:180px;
+min-width:200px;
+font-weight:600;
 }
 
 .search-wrapper input{
@@ -178,7 +224,7 @@ color:#111827;
 }
 
 .search-btn{
-padding:18px 28px;
+padding:18px 30px;
 border:none;
 border-radius:16px;
 background:linear-gradient(135deg,#2563eb,#7c3aed);
@@ -197,14 +243,14 @@ display:flex;
 justify-content:center;
 gap:20px;
 flex-wrap:wrap;
-margin-top:40px;
+margin-top:45px;
 }
 
 .stat-box{
 background:rgba(255,255,255,0.08);
-padding:22px;
+padding:24px;
 border-radius:22px;
-min-width:150px;
+min-width:170px;
 backdrop-filter:blur(20px);
 border:1px solid rgba(255,255,255,0.08);
 transition:0.3s;
@@ -215,12 +261,12 @@ transform:translateY(-6px);
 }
 
 .stat-box h3{
-font-size:28px;
+font-size:30px;
 color:#60a5fa;
+margin-bottom:8px;
 }
 
 .stat-box p{
-margin-top:8px;
 color:#cbd5e1;
 }
 
@@ -233,6 +279,10 @@ flex-wrap:wrap;
 align-items:center;
 }
 
+.popular-searches span{
+color:#cbd5e1;
+}
+
 .popular-searches button{
 padding:10px 18px;
 border:none;
@@ -241,6 +291,7 @@ background:rgba(255,255,255,0.08);
 color:white;
 cursor:pointer;
 transition:0.3s;
+font-weight:600;
 }
 
 .popular-searches button:hover{
@@ -248,25 +299,34 @@ background:#2563eb;
 }
 
 .section{
-padding:70px 6%;
+padding:80px 6%;
 }
 
 .section-title{
-font-size:36px;
-margin-bottom:35px;
+font-size:42px;
+margin-bottom:15px;
 font-weight:800;
+text-align:center;
+}
+
+.section-subtitle{
+text-align:center;
+color:#cbd5e1;
+margin-bottom:45px;
+max-width:800px;
+margin-inline:auto;
 }
 
 .category-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-gap:20px;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:22px;
 }
 
 .category-card{
 background:rgba(255,255,255,0.08);
-padding:28px;
-border-radius:22px;
+padding:30px 20px;
+border-radius:24px;
 text-align:center;
 backdrop-filter:blur(18px);
 transition:0.3s;
@@ -276,36 +336,25 @@ position:relative;
 overflow:hidden;
 }
 
-.category-card::before{
-content:'';
-position:absolute;
-width:100%;
-height:100%;
-background:linear-gradient(135deg,transparent,rgba(255,255,255,0.05));
-top:0;
-left:-100%;
-transition:0.5s;
-}
-
-.category-card:hover::before{
-left:100%;
-}
-
 .category-card:hover{
 transform:translateY(-8px);
 background:rgba(255,255,255,0.12);
 }
 
 .category-card i{
-font-size:34px;
-margin-bottom:15px;
+font-size:38px;
+margin-bottom:18px;
 color:#60a5fa;
+}
+
+.category-card h3{
+font-size:18px;
 }
 
 .business-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-gap:28px;
+gap:30px;
 }
 
 .card{
@@ -315,7 +364,6 @@ overflow:hidden;
 backdrop-filter:blur(20px);
 border:1px solid rgba(255,255,255,0.1);
 transition:0.4s;
-position:relative;
 }
 
 .card:hover{
@@ -325,17 +373,12 @@ box-shadow:0 25px 60px rgba(0,0,0,0.3);
 
 .business-img{
 width:100%;
-height:220px;
+height:230px;
 object-fit:cover;
-transition:0.5s;
-}
-
-.card:hover .business-img{
-transform:scale(1.05);
 }
 
 .card-content{
-padding:22px;
+padding:24px;
 }
 
 .badge{
@@ -345,6 +388,7 @@ border-radius:50px;
 background:#2563eb;
 font-size:13px;
 margin-bottom:12px;
+font-weight:600;
 }
 
 .verified-badge{
@@ -358,27 +402,27 @@ font-size:12px;
 margin-bottom:12px;
 }
 
-.rating{
-color:#facc15;
-margin:10px 0;
+.card h3{
+font-size:24px;
+margin-bottom:10px;
 }
 
-.rating-count{
-font-size:13px;
-color:#94a3b8;
-margin-bottom:10px;
+.rating{
+color:#facc15;
+margin:12px 0;
 }
 
 .card p{
 color:#d1d5db;
 margin-bottom:8px;
+font-size:15px;
 }
 
 .btn-group{
 display:flex;
 flex-wrap:wrap;
 gap:10px;
-margin-top:18px;
+margin-top:20px;
 }
 
 .btn{
@@ -388,23 +432,52 @@ border:none;
 border-radius:14px;
 font-weight:600;
 cursor:pointer;
-text-decoration:none;
 text-align:center;
 transition:0.3s;
+color:white;
 }
 
-.whatsapp{background:#25D366;color:white;}
-.call{background:#0ea5e9;color:white;}
-.map{background:#f97316;color:white;}
-.review{background:#7c3aed;color:white;}
+.whatsapp{
+background:#25D366;
+}
+
+.call{
+background:#0ea5e9;
+}
+
+.map{
+background:#f97316;
+}
+
+.review{
+background:#7c3aed;
+}
 
 .btn:hover{
 transform:translateY(-3px);
 }
 
+.about-section{
+background:rgba(255,255,255,0.05);
+border-top:1px solid rgba(255,255,255,0.08);
+border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.about-content{
+max-width:1100px;
+margin:auto;
+text-align:center;
+}
+
+.about-content p{
+color:#cbd5e1;
+font-size:18px;
+margin-top:20px;
+}
+
 footer{
-padding:70px 6%;
-margin-top:70px;
+padding:80px 6%;
+margin-top:50px;
 border-top:1px solid rgba(255,255,255,0.08);
 }
 
@@ -423,14 +496,18 @@ margin-bottom:18px;
 .footer-grid a,
 .footer-grid p{
 color:#94a3b8;
-text-decoration:none;
 display:block;
 margin-bottom:10px;
+}
+
+.footer-grid a:hover{
+color:#60a5fa;
 }
 
 .social-icons{
 display:flex;
 gap:15px;
+margin-top:15px;
 }
 
 .social-icons a{
@@ -441,11 +518,19 @@ background:rgba(255,255,255,0.08);
 display:flex;
 align-items:center;
 justify-content:center;
+color:white;
+transition:0.3s;
+}
+
+.social-icons a:hover{
+background:#2563eb;
 }
 
 .copyright{
 text-align:center;
 color:#64748b;
+padding-top:20px;
+border-top:1px solid rgba(255,255,255,0.06);
 }
 
 @media(max-width:768px){
@@ -455,7 +540,7 @@ padding:70px 5%;
 }
 
 .hero h1{
-font-size:38px;
+font-size:40px;
 }
 
 .hero p{
@@ -487,6 +572,10 @@ text-align:center;
 justify-content:center;
 }
 
+.section-title{
+font-size:32px;
+}
+
 }
 
 </style>
@@ -498,7 +587,7 @@ justify-content:center;
 <nav class="navbar">
 
 <div class="logo">
-<img src="logo.png" alt="SISYP Logo">
+<img src="logo.png" alt="SISYP Directory Logo">
 <span>SISYP Directory</span>
 </div>
 
@@ -506,28 +595,33 @@ justify-content:center;
 <a href="#">Home</a>
 <a href="#categories">Categories</a>
 <a href="#businesses">Businesses</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
 </div>
 
 </nav>
 
 <section class="hero">
 
-<h1>Find Trusted Local Businesses in Andhra Pradesh</h1>
+<h1>Best Business Directory in Visakhapatnam & Andhra Pradesh</h1>
 
 <p>
-Discover verified hospitals, hotels, restaurants, schools and local services across Visakhapatnam and Andhra Pradesh.
+SISYP Directory helps you discover trusted hospitals, restaurants, hotels, schools, shops and local services across Visakhapatnam, Vijayawada, Guntur, Tirupati and Andhra Pradesh.
 </p>
 
 <div class="search-wrapper">
 
 <select class="location-select">
+
 <option>Visakhapatnam</option>
 <option>Vijayawada</option>
 <option>Guntur</option>
 <option>Tirupati</option>
+<option>Kakinada</option>
+
 </select>
 
-<input type="text" placeholder="Search businesses, categories, services...">
+<input type="text" placeholder="Search businesses, services, categories...">
 
 <button class="search-btn">
 <i class="fa-solid fa-magnifying-glass"></i>
@@ -540,7 +634,7 @@ Search
 
 <div class="stat-box">
 <h3>5000+</h3>
-<p>Businesses</p>
+<p>Business Listings</p>
 </div>
 
 <div class="stat-box">
@@ -549,59 +643,278 @@ Search
 </div>
 
 <div class="stat-box">
-<h3>Verified</h3>
-<p>Listings</p>
+<h3>100%</h3>
+<p>Verified Businesses</p>
 </div>
 
 <div class="stat-box">
 <h3>24/7</h3>
-<p>Support</p>
+<p>Customer Support</p>
 </div>
 
 </div>
 
 <div class="popular-searches">
 
-<span>Popular:</span>
+<span>Popular Searches:</span>
 
 <button>Hospitals</button>
 <button>Hotels</button>
 <button>Restaurants</button>
 <button>Schools</button>
+<button>Clinics</button>
+<button>Real Estate</button>
 
 </div>
 
 </section>
 
-<footer>
+<section class="section" id="categories">
+
+<h2 class="section-title">Popular Categories</h2>
+
+<p class="section-subtitle">
+Browse top local business categories in Visakhapatnam and Andhra Pradesh.
+</p>
+
+<div class="category-grid">
+
+<div class="category-card">
+<i class="fa-solid fa-hospital"></i>
+<h3>Hospitals</h3>
+</div>
+
+<div class="category-card">
+<i class="fa-solid fa-utensils"></i>
+<h3>Restaurants</h3>
+</div>
+
+<div class="category-card">
+<i class="fa-solid fa-hotel"></i>
+<h3>Hotels</h3>
+</div>
+
+<div class="category-card">
+<i class="fa-solid fa-school"></i>
+<h3>Schools</h3>
+</div>
+
+<div class="category-card">
+<i class="fa-solid fa-store"></i>
+<h3>Shops</h3>
+</div>
+
+<div class="category-card">
+<i class="fa-solid fa-building"></i>
+<h3>Real Estate</h3>
+</div>
+
+</div>
+
+</section>
+
+<section class="section" id="businesses">
+
+<h2 class="section-title">Featured Businesses</h2>
+
+<p class="section-subtitle">
+Explore verified local businesses and services from across Andhra Pradesh.
+</p>
+
+<div class="business-grid">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=1200&auto=format&fit=crop"
+class="business-img"
+alt="Best hospital in Visakhapatnam">
+
+<div class="card-content">
+
+<div class="badge">Hospital</div>
+
+<div class="verified-badge">
+<i class="fa-solid fa-circle-check"></i>
+Verified
+</div>
+
+<h3>ABC Multispeciality Hospital</h3>
+
+<div class="rating">
+★★★★★
+</div>
+
+<p>Trusted healthcare and emergency medical services in Visakhapatnam.</p>
+
+<p><i class="fa-solid fa-location-dot"></i> Visakhapatnam</p>
+
+<div class="btn-group">
+
+<a href="#" class="btn whatsapp">WhatsApp</a>
+
+<a href="#" class="btn call">Call</a>
+
+<a href="#" class="btn map">Map</a>
+
+<a href="#" class="btn review">Review</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1200&auto=format&fit=crop"
+class="business-img"
+alt="Best restaurants in Visakhapatnam">
+
+<div class="card-content">
+
+<div class="badge">Restaurant</div>
+
+<div class="verified-badge">
+<i class="fa-solid fa-circle-check"></i>
+Verified
+</div>
+
+<h3>Coastal Spice Restaurant</h3>
+
+<div class="rating">
+★★★★★
+</div>
+
+<p>Popular family restaurant serving delicious Andhra and seafood dishes.</p>
+
+<p><i class="fa-solid fa-location-dot"></i> Vizag Beach Road</p>
+
+<div class="btn-group">
+
+<a href="#" class="btn whatsapp">WhatsApp</a>
+
+<a href="#" class="btn call">Call</a>
+
+<a href="#" class="btn map">Map</a>
+
+<a href="#" class="btn review">Review</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1200&auto=format&fit=crop"
+class="business-img"
+alt="Best hotels in Andhra Pradesh">
+
+<div class="card-content">
+
+<div class="badge">Hotel</div>
+
+<div class="verified-badge">
+<i class="fa-solid fa-circle-check"></i>
+Verified
+</div>
+
+<h3>Blue Ocean Hotel</h3>
+
+<div class="rating">
+★★★★★
+</div>
+
+<p>Luxury hotel and accommodation services near RK Beach Visakhapatnam.</p>
+
+<p><i class="fa-solid fa-location-dot"></i> RK Beach</p>
+
+<div class="btn-group">
+
+<a href="#" class="btn whatsapp">WhatsApp</a>
+
+<a href="#" class="btn call">Call</a>
+
+<a href="#" class="btn map">Map</a>
+
+<a href="#" class="btn review">Review</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section about-section" id="about">
+
+<div class="about-content">
+
+<h2 class="section-title">About SISYP Directory</h2>
+
+<p>
+SISYP Directory is one of the growing business listing platforms in Andhra Pradesh helping users discover trusted local businesses, hospitals, hotels, restaurants, educational institutions and professional services in Visakhapatnam and nearby cities.
+</p>
+
+<p>
+Our goal is to connect customers with verified businesses while helping local companies improve their online visibility and digital presence.
+</p>
+
+</div>
+
+</section>
+
+<footer id="contact">
 
 <div class="footer-grid">
 
 <div>
+
 <h3>SISYP Directory</h3>
-<p>Find trusted businesses across Andhra Pradesh.</p>
+
+<p>
+Trusted business directory platform in Visakhapatnam and Andhra Pradesh.
+</p>
+
 </div>
 
 <div>
+
 <h4>Quick Links</h4>
+
 <a href="#">Home</a>
-<a href="#">Categories</a>
-<a href="#">Businesses</a>
+<a href="#categories">Categories</a>
+<a href="#businesses">Businesses</a>
+<a href="#about">About Us</a>
+
 </div>
 
 <div>
+
 <h4>Legal</h4>
+
 <a href="#">Privacy Policy</a>
 <a href="#">Terms & Conditions</a>
+<a href="#">Disclaimer</a>
+
 </div>
 
 <div>
+
 <h4>Follow Us</h4>
 
 <div class="social-icons">
-<a href="#"><i class="fab fa-facebook"></i></a>
+
+<a href="#"><i class="fab fa-facebook-f"></i></a>
+
 <a href="#"><i class="fab fa-instagram"></i></a>
+
 <a href="#"><i class="fab fa-youtube"></i></a>
+
 </div>
 
 </div>
@@ -609,7 +922,7 @@ Search
 </div>
 
 <p class="copyright">
-© 2026 SISYP Business Directory
+© 2026 SISYP Directory. All Rights Reserved.
 </p>
 
 </footer>
